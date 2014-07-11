@@ -1,0 +1,195 @@
+You can sign in to E4D.start() WebApp at:
+http://e4dstart.appspot.com
+
+and Education for Development services at:
+http://www.google.com/a/e4d.in
+
+ -E4D Admin
+____________________________________________
+
+BASICS
+	http://mail.e4d.in
+	http://calendar.e4d.in
+	http://docs.e4d.in
+    http://trello.com/
+    http://twitter.com
+
+
+
+START HERE CONTENT
+    http://www.typingclub.com/login.html	[http://bit.ly/1lwDE26]
+
+COMPUTER + INTERNET BASICS
+http://www.gcflearnfree.org/computerbasics
+    http://www.gcflearnfree.org/googledocuments
+    http://www.gcflearnfree.org/googlespreadsheets
+    http://www.gcflearnfree.org/searchbetter
+    http://www.gcflearnfree.org/useinformationcorrectly
+
+
+
+
+ENGLISH LANGUAGE LEARNING
+
+    http://mooec.com/
+        http://s3.amazonaws.com/pieronline-studentexperience/apps/1/header/MOOEC_Logo_lg.png
+        https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/p200x200/1463029_1381572368734215_267997612_n.jpg
+        https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png
+
+
+    ENGLISH FUNDAMENTALS
+    http://mooec.com/courses/elementary-english-course [Basic]
+        "This course teaches basic English. You will learn how to communicate in English."
+    http://mooec.com/courses/improving-your-speaking [Intermediate]
+        "This lesson helps you how to speak English fluently. You will improve your pronunciation and fluency."
+    http://mooec.com/courses/prepositions-as-language-chunks [Intermediate]
+        "This lesson looks at prepositions (e.g., 'in', 'on', 'under', 'behind', 'between'). You will learn how to use prepositions in language chunks."
+    http://mooec.com/courses/common-mistakes [Intermediate]
+        "This lesson focuses on common mistakes in English for ESL students (e.g., its/it's, loose/lose, me/I, good/well). You will improve your level of English grammar."
+    http://mooec.com/courses/subject-verb-agreement [Intermediate]
+        "This lesson focuses on important English grammar. You will learn the rules for correct subject-verb agreement."
+    http://mooec.com/courses/speaking-english-for-indic-speakers [Intermediate]
+        "This lesson teaches pronunciation for indic speakers. You will improve your stress, rhythm, timing, and ability to hear and produce sounds in the English language."
+    http://mooec.com/courses/comma-splices-and-run-on-sentences-identification-and-solutions [Intermediate]
+        "This lesson teaches higher level grammar for exams and university. You will learn how to make complex grammar and improve your writing."
+
+    ENGLISH LIFE SKILLS
+    http://mooec.com/courses/asking-someone-for-a-job [Intermediate]
+        "This lesson focuses on using English to get a job. You will learn language useful to ask for a job."
+    http://mooec.com/courses/referencing [Intermediate]
+        "This lesson teaches writing skills at university. You will learn how to reference and rules about never copying."
+    http://mooec.com/courses/basic-paraphrasing [Intermediate]
+        "This lesson teaches writing skills for university. You will learn the skill of paraphrasing."
+    http://mooec.com/courses/presentation-impact-technique [Upper Intermediate]
+        "This lesson focuses on making a presentation at university. You will learn skills for university life, vocabulary, pronunciation, and writing."
+
+    ENGLISH TO IMPRESS YOUR RELATIVES
+    http://mooec.com/courses/coffee-culture [Intermediate]
+        "This lesson is most relevant to students who want to work in an English speaking country. You will learn how to better understand fluent spoken English, vocabulary and idiomatic language."
+    http://mooec.com/courses/wild-backyards [Intermdeiate]
+        "This lesson focuses on developing your skills for reading and listening. You will learn about common plants and animals found in Australian backyards."
+    http://mooec.com/courses/coastal-ecosystems [Intermediate]
+        "This lesson is for students studying academic English. You will learn ideas, vocabulary, and phrases connected to the environment."
+    http://mooec.com/courses/animals-adapting-to-cope-with-climate-change-a1af9620-f2cd-4b2c-b9c2-3e4645ce617b [Upper Intermediate]
+        "This lesson focuses on academic reading skills and is useful preparation for the IELTS or TOEFL exams."
+
+    ENGLISH FOR PROVING YOU KNOW ENGLISH (IELTS/TOEFL TOPICS)
+    http://mooec.com/courses/toefl-lesson-1 [Intermediate]
+        "This lesson is for TOEFL students. You will increase your test taking skills."
+    http://mooec.com/courses/free-ielts-listening-test [Intermediate]
+        "This is a a free Listening test. You will improve your knowledge of the IELTS test."
+    http://mooec.com/courses/listening-tips [Intermediate]
+        "This lesson teaches listening skills for the IELTS exam. You will improve your listening score and avoid mistakes."
+    http://mooec.com/courses/ielts-task-1-prepositions [Intermediate]
+        "This lesson is about IELTS writing Task 1. You will learn how to use four important prepositions."
+    http://mooec.com/courses/grammar-guru-1 [Intermediate]
+        "The Grammar Guru talks about 'Complex Grammar' for the IELTS exam."
+
+
+    http://www.gcflearnfree.org/learnenglish
+        http://www.gcflearnfree.org/learnenglish/simpleenglish
+        http://www.gcflearnfree.org/readingactivities
+        http://www.gcflearnfree.org/grammar
+
+
+
+
+MOOC INDICES
+	rationale: many services index MOOCs and provide user ratings, currently unclear which offer preferable interface or more useful info.  here we provide E4D users access to a range of such sites, with goal of evaluating user experiences and refining choices constructively.
+	todo: enable voting/feedback on each site
+    https://degreed.com/
+    http://www.coursetalk.com/		[http://www.coursetalk.com/login/google-oauth2/]
+    http://knollop.com/				[http://knollop.com/auth/start/google-oauth2]
+	http://www.topfreeclasses.com/	[http://www.topfreeclasses.com/auth/google?return=%2Flogin]
+	http://www.mooctivity.com/		[http://www.mooctivity.com/accounts/google/login/?process=login]
+    https://www.class-central.com/
+    http://www.mooc-list.com/
+    http://www.worldscienceu.com/
+	http://openstudy.com/
+	http://www.learningadvisor.com/
+
+    https://gibbon.co/			[https://gibbon.co/login/google-oauth2/]
+
+
+PROJECTS
+    https://www.coursolve.org/
+    http://www.techpedia.in/
+	https://www.khanacademy.org/science/discoveries-projects/
+		https://www.khanacademy.org/science/discoveries-projects/robots/all-about-spout/v/spout-bot-at-santa-rita-elementary-school
+	http://encyclobeamia.solarbotics.net/articles/beam.html
+		http://bestiary.solarbotics.net/
+		http://www.solarbotics.net/library.html
+	http://www.instructables.com/
+	https://learn.adafruit.com/
+	http://makezine.com/
+	http://hackaday.com/
+	https://class.stanford.edu/courses/Engineering/Haptics/Fall2013/about
+	https://www.coursera.org/course/conrob
+
+
+Design-Thinking / Creative Capactiy Building / Entrepreneurship
+    http://www.dfcworld.com/icanmodel.html
+        http://designthinkingguide.dfcworld.com/
+
+
+
+INSPIRATION / PROJECT IDEAS / POTENTIAL INTERNSHIP HOSTS
+        http://www.villgro.org/possible
+
+
+
+NEWS/INFO/DISCUSSION
+    http://moocs.com/
+    https://www.edsurge.com/
+
+
+
+TUTORIALS (FREE)
+    http://tutorials.tutsplus.com/ (TUTORIALS ARE FREE; COURSES ARE NOT)
+	http://www.khanacademy.org/	[https://www.khanacademy.org/signup/google]
+	http://www.codecademy.com/	[http://www.codecademy.com/auth/google_oauth2?signin=true]
+
+    http://www.w3schools.com/  [ALL CERTIFICATES ARE PAID $$$]
+        http://www.w3schools.com/html/html_intro.asp
+        http://www.w3schools.com/html/
+
+
+
+PAID ONLY?
+	http://www.codeschool.com/	[https://www.codeschool.com/auth/gplus]
+
+
+MOOC Sites & Service Providers
+	http://www.edx.org/
+	http://www.coursera.org/
+	http://www.udacity.com/
+	http://alison.com/			[http://alison.com/?origin=google_login#]
+	http://www.canvas.net/
+	http://www.futurelearn.com/
+	http://iversity.org/
+	http://novoed.com/
+
+?	http://www.open2study.com/
+
+
+PEER-LEARNING
+    http://openstudy.com/    "Get Help. Meet Students. It’s a free community. Ask questions. Give help. Earn medals. Make friends.
+                                1 million students + 160 countries + 190 study groups = Serious Fun"
+    http://p2pu.org/
+
+?    http://www.uncollege.org/manifesto
+?    http://teachup.org/
+?    http://www.coexploration.org/
+
+
+
+
+
+
+SUPPORT / INCUBATION / OPPORTUNITIES
+
+    Hippocampus Learning Centers (HLC) http://hlc.org.in/
+
+
+    http://www.villgro.org/talents
+        http://www.villgro.org/mentoring

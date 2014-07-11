@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>E4D.start()</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Morris chart -->
+        <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <!-- jvectormap -->
+        <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- fullCalendar -->
+        <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">
+            /* CUSTOMIZE THE CAROUSEL
+            -------------------------------------------------- */
+            /* Carousel base class */
+            .carousel {
+              margin-bottom: 60px;
+            }
+            /* Since positioning the image, we need to help out the caption */
+            .carousel-caption {
+              z-index: 1;
+            }
+            /* Declare heights because of positioning of img element */
+            .carousel .item {
+              height: 400px;
+              background-color:#555;
+            }
+            .carousel img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              min-height: 400px;
+            }
+
+            /*The following added as per http://stackoverflow.com/questions/21943108/bootstrap-3-img-responsive-images-are-not-responsive-inside-fieldset-in-firefox */
+            .img-responsive {
+                width:100%;
+            }
+
+            /* RESPONSIVE CSS
+            -------------------------------------------------- */
+            @media (min-width: 768px) {
+              /* Remve the edge padding needed for mobile */
+              .marketing {
+                padding-left: 0;
+                padding-right: 0;
+              }
+              /* Navbar positioning foo */
+              .navbar-wrapper {
+                margin-top: 20px;
+                margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+              }
+              /* The navbar becomes detached from the top, so we round the corners */
+              .navbar-wrapper .navbar {
+                border-radius: 4px;
+              }
+              /* Bump up size of carousel content */
+              .carousel-caption p {
+                margin-bottom: 20px;
+                font-size: 21px;
+                line-height: 1.4;
+              }
+            }
+		</style>
+
+
+
+		<style type="text/css">
+			/* custom inclusion of right, left and below tabs; see http://www.bootply.com/74926 AND
+			http://stackoverflow.com/questions/18432577/stacked-tabs-in-bootstrap-3 */
+			.tabs-below > .nav-tabs,
+			.tabs-right > .nav-tabs,
+			.tabs-left > .nav-tabs {
+			  border-bottom: 0;
+			}
+			.tab-content > .tab-pane,
+			.pill-content > .pill-pane {
+			  display: none;
+			}
+			.tab-content > .active,
+			.pill-content > .active {
+			  display: block;
+			}
+			.tabs-below > .nav-tabs {
+			  border-top: 1px solid #ddd;
+			}
+			.tabs-below > .nav-tabs > li {
+			  margin-top: -1px;
+			  margin-bottom: 0;
+			}
+			.tabs-below > .nav-tabs > li > a {
+			  -webkit-border-radius: 0 0 4px 4px;
+			     -moz-border-radius: 0 0 4px 4px;
+			          border-radius: 0 0 4px 4px;
+			}
+			.tabs-below > .nav-tabs > li > a:hover,
+			.tabs-below > .nav-tabs > li > a:focus {
+			  border-top-color: #ddd;
+			  border-bottom-color: transparent;
+			}
+			.tabs-below > .nav-tabs > .active > a,
+			.tabs-below > .nav-tabs > .active > a:hover,
+			.tabs-below > .nav-tabs > .active > a:focus {
+			  border-color: transparent #ddd #ddd #ddd;
+			}
+			.tabs-left > .nav-tabs > li,
+			.tabs-right > .nav-tabs > li {
+			  float: none;
+			}
+			.tabs-left > .nav-tabs > li > a,
+			.tabs-right > .nav-tabs > li > a {
+			  min-width: 74px;
+			  margin-right: 0;
+			  margin-bottom: 3px;
+			}
+			.tabs-left > .nav-tabs {
+			  float: left;
+			  margin-right: 19px;
+			  border-right: 1px solid #ddd;
+			}
+			.tabs-left > .nav-tabs > li > a {
+			  margin-right: -1px;
+			  -webkit-border-radius: 4px 0 0 4px;
+			     -moz-border-radius: 4px 0 0 4px;
+			          border-radius: 4px 0 0 4px;
+			}
+			.tabs-left > .nav-tabs > li > a:hover,
+			.tabs-left > .nav-tabs > li > a:focus {
+			  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+			}
+			.tabs-left > .nav-tabs .active > a,
+			.tabs-left > .nav-tabs .active > a:hover,
+			.tabs-left > .nav-tabs .active > a:focus {
+			  border-color: #ddd transparent #ddd #ddd;
+			  *border-right-color: #ffffff;
+			}
+			.tabs-right > .nav-tabs {
+			  float: right;
+			  margin-left: 19px;
+			  border-left: 1px solid #ddd;
+			}
+			.tabs-right > .nav-tabs > li > a {
+			  margin-left: -1px;
+			  -webkit-border-radius: 0 4px 4px 0;
+			     -moz-border-radius: 0 4px 4px 0;
+			          border-radius: 0 4px 4px 0;
+			}
+			.tabs-right > .nav-tabs > li > a:hover,
+			.tabs-right > .nav-tabs > li > a:focus {
+			  border-color: #eeeeee #eeeeee #eeeeee #dddddd;
+			}
+			.tabs-right > .nav-tabs .active > a,
+			.tabs-right > .nav-tabs .active > a:hover,
+			.tabs-right > .nav-tabs .active > a:focus {
+			  border-color: #ddd #ddd #ddd transparent;
+			  *border-left-color: #ffffff;
+			}
+		</style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+
+    </head>
+
+    <body class="skin-blue">
+
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="/" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                {E4D}
+				<img src="img/E4Dicon_upup_100px.png" class="icon" id="E4Dlogo" alt="E4Dlogo"/>
+            </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+
+				<div id="gSignInWrapper" class="navbar-right">
+				  <div id="myButton" class="btn btn-warning btn-lg">
+				    E4Ders, <b>LOGIN</b> here!
+				  </div>
+				</div>
+
+                <!-- Sidebar toggle button-->
+                <div id="sidetoggle" style="display: none">
+                    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="loggedinNavMenus" class="navbar-right" style="display:none">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                <span class="label label-success">X</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have X messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar04.png" class="img-circle" alt="User Image"/>
+                                                </div>
+                                                <h4>
+                                                    Sender1
+                                                    <small><i class="fa fa-clock-o"></i> xx mins</small>
+                                                </h4>
+                                                <p>Message/Subject</p>
+                                            </a>
+                                        </li><!-- end message -->
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/rowlf.jpeg" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Sender2
+                                                    <small><i class="fa fa-clock-o"></i> xx hours</small>
+                                                </h4>
+                                                <p>Message/Subject</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">[LINK]See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-warning"></i>
+                                <span class="label label-warning">Y</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have Y notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-people info"></i> e.g., Ammoor manager gone rogue!
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">[LINK] View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span class="label label-danger">Z</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have Z tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Task#1
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Task#2
+                                                    <small class="pull-right">40%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-green" style="width: 75%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">75% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">[LINK] View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span id="user_name">Joe Mhama <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img id="user_image" src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p>
+                                        <b id="user_info"> Joe Mhama - Web Surfer </b>
+                                        <small id="user_email"> anonymous user </small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!--li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing1</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing2</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing3</a>
+                                    </div>
+                                </li-->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a id="user_profile" href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <!--a href="{{ url|safe }}" class="btn btn-default btn-flat"> {{ url_linktext }} </a-->
+										<!-- google-account-logout-and-redirect: http://stackoverflow.com/questions/4202161/google-account-logout-and-redirect/14831349#14831349 -->
+                                        <a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://e4d.in" class="btn btn-danger btn-lg"> <b>LOGOUT</b> </a>
+                                        <!----At some point, try using gapi.auth.signOut(); method instead -- see https://developers.google.com/+/web/signin/sign-out -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas collapse-left">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img id="user_image1" src="img/Rani_of_jhansi.jpg" class="img-circle" alt="User Image" />
+                        </div>
+                        <div id="welcome_text" class="pull-left info">
+                            <p> {{ url_linktext2 }} </p>
+
+                            <!--a href="#"><i class="fa fa-circle text-success"></i> Online</a-->
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <!--form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form-->
+                    <!-- /.search form -->
+
+
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+            		    <div class="box">
+            				<div class="box-body">
+            				  <ul class="nav nav-pills nav-stacked" id="mySideButts">
+            					<li class="active">
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            							<i class="fa fa-home"></i> <big>HOME</big>
+            						</a>
+            					</li>
+
+            					<li> <!--class="treeview"-->
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            							<i class="glyphicon glyphicon-bookmark"></i> <big>.STUDY.</big> <!--i class="fa fa-angle-left pull-right"></i-->
+            						</a>
+                                    <!--ul class="treeview-menu">
+                                        <li class="active">
+                                        	<a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwoA"> » &nbsp;<small>English & Computer Basics</small></a>
+                                        </li>
+                                        <li>
+                                        	<a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwoB"> » &nbsp;<small>University Courses & Tutorials</small></a>
+                                        </li>
+            						</ul-->
+            					</li>
+
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+            							<i class="fa fa-wrench"></i> <big>.CREATE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+            							<i class="fa fa-bullhorn"></i> <big>.COMMUNICATE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+            							<i class="fa fa-calendar"></i> <big>.ORGANIZE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+            							<i class="glyphicon glyphicon-road"></i> <big>.EXPLORE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+            							<i class="fa fa-meh-o"></i> <big> Got Doubts? </big>
+            						</a>
+            					</li>
+            				  </ul>
+            				</div>
+            		    </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="btn-group-vertical">
+                        	<button class="btn btn-default btn-lg disabled"> ADMIN</button>
+                        	<button class="btn btn-default btn-lg disabled"> BUTTONS</button>
+                        	<button class="btn btn-default btn-lg disabled"> HERE</button>
+                        	<!--button class="btn btn-default btn-lg"> COMMUNICATE</button>
+                        	<button class="btn btn-default btn-lg"> ORGANIZE</button>
+                        	<button class="btn btn-default btn-lg"> EXPLORE</button>
+                        	<button class="btn btn-default btn-lg"> Got <i>DOUBTS</i>?</button-->
+                        </div>
+
+
+						<!--div class="btn-group-vertical">
+							<button class="btn btn-default btn-lg"> HOME</button>
+							<button class="btn btn-default btn-lg"> STUDY</button>
+							<button class="btn btn-default btn-lg"> CREATE</button>
+							<button class="btn btn-default btn-lg"> COMMUNICATE</button>
+							<button class="btn btn-default btn-lg"> ORGANIZE</button>
+							<button class="btn btn-default btn-lg"> EXPLORE</button>
+							<button class="btn btn-default btn-lg"> Got <i>DOUBTS</i>?</button>
+						</div-->
+
+
+                        <!--li class="active">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <i class="fa fa-tower"></i> <span>HOME</span>
+                            </a>
+                        </li>
+                        <li>
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+					        	<i></i><span> .STUDY. </span> <i class="fa fa-certificate"></i>
+					        </a>
+                        </li-->
+                        <!--li class="treeview">
+                            <a href="#"> <i class="fa fa-bar-chart-o"></i> <span>Charts</span> <i class="fa fa-angle-left pull-right"></i> </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                            </ul>
+                        </li-->
+
+                        <!--li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <i class="fa fa-wrench"></i> <span>.CREATE.</span> <i>
+                            </a>
+                        </li>
+
+                        <li class="treeview">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <i></i> <span>.COMMUNICATE.</span> <i class="glyphicon glyphicon-bullhorn"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                	<a href="#"><i class="fa fa-angle-double-right"></i> G+, Groups, Twitter, etc.</a>
+                                </li>
+                                <li>
+                                	<a href="pages/mailbox.html"><i class="fa fa-angle-double-right"></i> Mailbox (example only!)</a>
+                                </li>
+							</ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                <i class="fa fa-edit"></i> <span>.ORGANIZE.</span> <i class="fa fa-calendar"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                	<a href="#"><i class="fa fa-angle-double-right"></i> Tasks, gDrive, etc.</a> <i class="fa fa-group"></i><i class="fa fa-comments-o"></i>
+                                </li>
+                                <li>
+                                	<a href="pages/calendar.html"><i class="fa fa-angle-double-right"></i> Calendar (example only!)</a>
+                                </li>
+							</ul>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                <i class="fa fa-calendar"></i> <span>.EXPLORE.</span>
+                                <small class="badge pull-right bg-red">3</small>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                <i class="fa fa-question-sign"></i> <span>Got <i>Doubts</i>?</span> <i class="fa fa-meh-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="treeview disabled">
+                            <a href="#" class="disabled">
+                                <i class="fa fa-folder"></i> <span>::PATIENCE::</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
+                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
+                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
+                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section-->
+                <!-- /.sidebar -->
+            </aside>
+
+
+
+            <aside class="right-side strech"><!-- Right side column. Contains the navbar and content of the page -->
+                <!--section class="content-header">
+                    <h1> Dashboard  <small>Control panel</small> </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section-->
+                <section id="content" class="content"><!-- Main content -->
+
+					<div class="panel-group" id="accordion"><!-- These are inter-dependent collapsible divs (expanding one collapses the rest) -->
+    					<div class="panel panel-default"> <!---.HOME. SECTION-ONE-->
+    					    <!--div class="panel-heading">  <h4 class="panel-title"> </h4></div-->
+    					    <div id="collapseOne" class="panel-collapse collapse in">
+    					      <div id="panel1_content" class="panel-body" style="height:auto">
+
+
+
+
+
+                                    <!-- see Badge Design Utility, see https://developers.google.com/+/web/badge/ -->
+                                    <!--div style="position: absolute; right:0px; top:50px; border:1px dotted purple; width:180px; height:332px;">
+                                        <div class="g-community" data-width="150"  data-href="https://plus.google.com/communities/111258927057230820664" data-theme="dark">
+                                        </div>
+                                    </div-->
+
+                                    <div id="rightpanel" style="background-color:#FFD700; float:right; width: 195px; position:relative; top:0px; height:100%;">
+                                        <!-- see Badge Design Utility, see https://developers.google.com/+/web/badge/ -->
+                                        <div style="position: relative; margin-left:auto; margin-right: ; top:0px; border:1px dotted purple; width:180px; height:332px;">
+                                            <div class="g-community" data-width="180"  data-href="https://plus.google.com/communities/111258927057230820664" data-theme="dark">
+                                            </div>
+                                        </div>
+                                        <!--- Banjarapalya TWITTER FEED; To modify, see https://twitter.com/settings/widgets/469797817339219968/edit--->
+                                        <div style="display: ; padding-top:15px ">
+                                            <a class="twitter-timeline" href="https://twitter.com/abhijit_e4d/lists/e4d-banjarapalya" data-widget-id="469797817339219968">Tweets from https://twitter.com/abhijit_e4d/lists/e4d-banjarapalya</a>
+                                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                                            <!--a class="twitter-timeline" href="https://twitter.com/abhijit_e4d/lists/e4d-banjarapalya" data-widget-id="469797817339219968">Tweets from https://twitter.com/abhijit_e4d/lists/e4d-banjarapalya</a>
+                                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script-->
+                                        </div>
+                                    </div><!---id="rightpanel" style="background-color:#FFD700; float: right;--->
+
+
+
+        							<h4 ><!--class="page-header"-->
+        		                        E4D home(ly)page
+        		                        <p style="position:relative; padding-left:20px;" id="fix"><small>we's gots to fix this up quick, yo... </small>
+                                            <!--button id="fan" style="position: relative; left: 175px; " class="btn btn-danger btn-flat btn-sm" onclick="document.getElementById('dump').setAttribute('style', 'display: '); document.getElementById('fix').setAttribute('style', 'display: none');  this.innerHTML='oh man....<p><small>now you\'ve done it.</small></p>' " onmousedown= "this.innerHTML='OMG NOOOOOOO!!!!!!' " >
+                                                Do not<br> <big>PRESS</big> <br>this button!
+                                            </button-->
+                                        </p>
+                                    </h4>
+
+
+
+<!-- Carousel
+================================================== -->
+<div class="container">
+<div id="myCarousel" class="carousel slide" style="width:700px; height:400px; ">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+      </ol>
+      <div class="carousel-inner">
+            <div class="item active">
+              <img src="img/HOMEPICS/IMG_7854_700px_padded.png" alt="..." class="img-responsive " style="width:100%; height:auto;" >
+              <div class="container">
+                <div class="carousel-caption">
+                    <h4>E4D-Banjarapalya's first workshop on DIy Machining, held at Bosch DIy Square, Sarjapur Main Road, Bangalore.</h4>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="img/HOMEPICS/IMG_7849.jpg" alt="..." class="img-responsive" style="width:100%; height:auto;">
+              <div class="container">
+                <div class="carousel-caption">
+                    <h1></h1>
+                    <h4>Students designed, planned and built a bird-house, which now hangs from a tree near the Center.</h4>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="img/HOMEPICS/IMG_7852.jpg" alt="..." class="img-responsive" style="width:100%; height:auto;">
+              <div class="container">
+                <div class="carousel-caption">
+                    <h1></h1>
+                    <h4>This was their first experience with carpentry and design.</h4>
+                </div>
+              </div>
+            </div>
+      </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="icon-prev"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="icon-next"></span></a>
+</div>
+</div>
+
+<!-- /.carousel -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----XXXXXX old carousel----->
+                                    <div class="container-fluid" style="width:700px; height:400px">
+                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                            <!-- Indicators -->
+                                            <!--ol class="carousel-indicators">
+                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                                <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                            </ol-->
+                                            <!-- Wrapper for slides -->
+                                            <div class="carousel-inner" style="width:700px; height:400px" >
+                                                <div class="item active" >
+                                                    <img src="img/HOMEPICS/IMG_7854_700px_padded.png" alt="...">
+                                                    <div class="carousel-caption">
+                                                        <h4>E4D-Banjarapalya's first workshop on DIy Machining, held at Bosch DIy Square, Sarjapur Main Road, Bangalore.</h4>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="item " >
+                                                    <img src="img/HOMEPICS/IMG_7849.jpg" alt="..." >
+                                                    <div class="carousel-caption">
+                                                        <h4>Students designed, planned and built a bird-house, which now hangs from a tree near the Center.</h4>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="item ">
+                                                    <img src="img/HOMEPICS/IMG_7852.jpg" alt="...">
+                                                    <div class="carousel-caption">
+                                                        <h4>This was their first experience with carpentry and design.</h4>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="item " >
+                                                    <img src="img/HOMEPICS/MOOEC6_600px.png" alt="..." >
+                                                    <div class="carousel-caption">
+                                                        <!--h4 style="color:black">Most E4D participants start with basic English proficiency and digital literacy training. </h4-->
+                                                    </div>
+                                                </div>
+                                                <div class="item " >
+                                                    <img src="img/HOMEPICS/fab_collage_600px.jpg" alt="...">
+                                                    <div class="carousel-caption">
+                                                        <h4>Blind-Lead Accessible Makerspace, Vellore, Tamil Nadu.</h4>
+                                                    </div>
+                                                </div>
+
+
+                                            ...
+                                            </div> <!---class="carousel-inner"-->
+
+
+
+                                            <!-- Controls -->
+                                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+<!----XXXXXXXX end old carousel----->
+
+
+
+
+
+
+<iframe width="640" height="390" style="padding-top:20px" src="//www.youtube.com/embed/SfuNTURvHAY" frameborder="0" allowfullscreen></iframe>
+<!--iframe width="425" height="260" src="//www.youtube.com/embed/SfuNTURvHAY" frameborder="0" allowfullscreen></iframe-->
+
+
+<!--------------------------------------------------------------------->
+
+<div id="dump" style="display: ">
+    <table cellspacing="0" class="sites-layout-hbox"><tbody><tr><td class="sites-layout-tile sites-tile-name-content-1"><div dir="ltr"><div><br></div><div><h4 style="text-align:left;border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;font-weight:normal;line-height:1.6;color:rgb(102,102,102)"><a name="TOC-MISSION-STATEMENT-VISION:"></a><span style="border:0px;margin:0px;padding:0px;color:rgb(0,0,0)"><b style="border:0px;margin:0px;padding:0px">MISSION STATEMENT / VISION:</b></span></h4><div><span style="border:0px;margin:0px;padding:0px;color:rgb(0,0,0)"><b style="border:0px;margin:0px;padding:0px"><br></b></span></div><div><div><span>&nbsp;&nbsp; &nbsp;</span>Our mission is to facilitate universal access to higher and continuing education, free-of-charge, empowering people from all walks of life, to provide lifelong learning and more fulfilling careers to anyone with the will to seek them. We aim to bring together people within and across communities, to provide them with the tools and knowledge to enable them to solve, by their own ability and initiative, problems which they identify and wish to change.</div><div><br></div><div><span>&nbsp;&nbsp; &nbsp;</span>We envision an India in which all men and women, young and old, regardless of means and background, have the ability, tools and will to advance the state of their lives and that of their community, society and country. Above all, we look forward to a nation where change emerges and blossoms uninhibited from the grassroots.</div></div><div><span style="border:0px;margin:0px;padding:0px;color:rgb(0,0,0)"><br></span></div><h4 style="text-align:center;border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;font-weight:normal;line-height:1.6;color:rgb(102,102,102)"><a name="TOC-Education-for-All"></a><span style="border:0px;margin:0px;padding:0px;color:rgb(0,0,0)"><b style="border:0px;margin:0px;padding:0px">सर्व</b><b style="border:0px;margin:0px;padding:0px">&nbsp;</b><b style="border:0px;margin:0px;padding:0px">शिक्षा</b><b style="border:0px;margin:0px;padding:0px">&nbsp;~&nbsp;<i style="border:0px;margin:0px;padding:0px">Education for All</i></b></span></h4></div><div><span style="border:0px;margin:0px;padding:0px;color:rgb(0,0,0)"><b style="border:0px;margin:0px;padding:0px"><i style="border:0px;margin:0px;padding:0px"><br></i></b></span></div><div><div style="text-align:center;display:block"><a href="http://home.e4d.in/home/spandana%20ki%20life%20partner.jpg?attredirects=0" imageanchor="1"><img border="0" height="256" src="http://home.e4d.in/_/rsrc/1379116331528/home/spandana%20ki%20life%20partner.jpg?height=256&amp;width=320" width="320"></a></div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div dir="ltr"><br></div><div dir="ltr"><br></div></div></td><td class="sites-layout-tile sites-tile-name-content-2"><div dir="ltr"><div><br></div><b><div style="text-align:center"><b>WHAT WE DO?</b></div><div style="text-align:center"><b><br></b></div></b><div><blockquote style="border-width:0px 0px 0px 1px;border-left-style:solid;border-left-color:rgb(119,119,119);margin:7px 35px 7px 45px;padding:0px 0px 0px 10px;quotes:none;font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;line-height:20px"><h3 style="text-align:center;border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6;color:rgb(102,102,102);font-size:16px"><a name="TOC-E4D-is-implementing-a-scalable-goal-based-system-of-education-harnessing-the-enthusiasm-of-current-and-recent-university-students-and-the-versatility-of-internet-based-courses-paired-with-hands-on-workshops-and-laboratories-that-encourage-creativity-and-in"></a><span style="border:0px;margin:0px;padding:0px;color:rgb(128,0,0)">E4D is implementing a scalable, goal-based system of education, harnessing the enthusiasm of current and recent university students, and the versatility of internet-based courses, paired with hands-on workshops and laboratories that encourage creativity and innovation. &nbsp;We are committed to make this system cost-effective for government and free-of-charge for students. &nbsp;</span></h3></blockquote><p style="border:0px;margin:0px 0px 15px;padding:0px;font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;line-height:20px">&nbsp;</p><p style="border:0px;margin:0px 0px 15px;padding:0px;font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;line-height:20px"><br></p><p style="border:0px;margin:0px 0px 15px;padding:0px;font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;line-height:20px"><br></p><div></div><div></div><br></div></div></td><td class="sites-layout-tile sites-tile-name-content-3"><div dir="ltr"><h4 style="border:0px;margin:0px 0px 5px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6;color:rgb(102,102,102);font-size:14px"><a name="TOC-1"></a><span style="font-size:medium;line-height:1.6;font-weight:normal"><br></span></h4><h4 style="border:0px;margin:0px 0px 5px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6;color:rgb(102,102,102);font-size:14px"><a name="TOC-VOICES-OF-THE-DENIZENS:"></a><span style="font-size:medium;line-height:1.6">VOICES OF THE DENIZENS:</span></h4><div><br></div><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;line-height:20px"><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><font size="3"><span style="border:0px;margin:0px;padding:0px;text-decoration:none">
+    <ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto"><li style="font-weight:normal;font-size:16px;border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><b style="font-size:medium;border:0px;margin:0px;padding:0px"><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;display:inline!important"><b style="border:0px;margin:0px;padding:0px"><p style="font-weight:normal;display:inline!important"><b><a href="http://e4d.in/blog/e4d-indiainternshipopportunity">E4D India Internship Opportunity:</a></b></p></b></ul></b></li><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;display:inline!important"><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;display:inline!important"><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;display:inline!important"><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;display:inline!important"><li style="font-size:16px;border:0px;margin:0px;padding:6px 0px;background-image:url();display:inline!important"><span style="font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;color:rgb(136,136,136);border:0px;margin:0px;padding:0px"><span style="color:rgb(51,51,51);font-size:13.333333969116211px"><span style="font-size:medium;font-family:georgia,serif;border:0px;margin:0px;padding:0px"><ul style="border:0px;margin:0px;padding:0px;list-style:none;overflow:auto;display:inline!important"><li style="font-size:16px;border:0px;margin:0px;padding:6px 0px;background-image:url();display:inline!important"><span style="font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;color:rgb(136,136,136);border:0px;margin:0px;padding:0px"><span style="color:rgb(51,51,51);font-size:13.333333969116211px"><p style="display:inline!important"><span style="color:rgb(136,136,136)">28 September 2013 </span>Come be the change!.</p></span></span></li></ul></span>...<a href="http://home.e4d.in/blog" style="font-weight:normal">more &gt;&gt;</a></span></span></li></ul></ul></ul></ul></ul></span></font></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><font size="3"><b style="border:0px;margin:0px;padding:0px;text-decoration:none"><font color="#8e7cc3"><a href="http://home.e4d.in/blog">The India Of My Dreams</a>&nbsp;&nbsp;</font></b></font><span style="font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;color:rgb(136,136,136);border:0px;margin:0px;padding:0px">22 June 2013</span></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><span style="font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;color:rgb(136,136,136);border:0px;margin:0px;padding:0px"><span style="color:rgb(51,51,51);font-size:13.333333969116211px">Sixty Five years ago, as the clock</span><span style="color:rgb(51,51,51);font-size:13.333333969116211px">.....<a href="http://home.e4d.in/blog">more &gt;&gt;</a></span></span></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><b style="border:0px;margin:0px;padding:0px;text-decoration:none"><font color="#8e7cc3" size="3"><a href="http://home.e4d.in/blog">Proactive People Survey!!</a></font></b><font size="4" style="font-family:verdana,sans-serif;color:rgb(142,124,195)">&nbsp;</font><a href="/"></a><span style="font-size:13.333333969116211px;color:rgb(136,136,136);font-family:Arial,Helvetica,sans-serif;border:0px;margin:0px;padding:0px">June 21, 2013</span></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><span style="font-size:13.333333969116211px;color:rgb(136,136,136);font-family:Arial,Helvetica,sans-serif;border:0px;margin:0px;padding:0px"><span style="border:0px;margin:0px;padding:0px;color:rgb(51,51,51);font-size:13.333333969116211px">Okay people, wherever you are, whenever you have 5 minutes to</span><strong style="border:0px;margin:0px;padding:0px;color:rgb(51,51,51);font-size:13.333333969116211px">&nbsp;</strong><span style="border:0px;margin:0px;padding:0px;color:rgb(51,51,51);font-size:13.333333969116211px">...<a href="http://home.e4d.in/blog">.more&gt;&gt;</a></span></span></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><font color="#8e7cc3" size="3"><b><font color="#8e7cc3"><a href="http://home.e4d.in/blog">My motivation for E4d</a></font><font face="Arial, Helvetica, sans-serif">&nbsp;</font></b></font><span style="font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;color:rgb(136,136,136);border:0px;margin:0px;padding:0px">June 13, 2013</span></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><span style="font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;color:rgb(136,136,136);border:0px;margin:0px;padding:0px"><span style="color:rgb(51,51,51);font-size:13.333333969116211px">When I came to know about the “Education for development” project.....<a href="http://home.e4d.in/blog">more&gt;&gt;</a></span></span></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><font color="#8e7cc3" size="3"><b><a href="http://home.e4d.in/blog">PERKS IDEAS for an E4D Indiegogo Campaign?</a></b></font><a href="/"></a><font color="#888888" style="font-size:13.333333969116211px;font-family:Arial,Helvetica,sans-serif">&nbsp;12&nbsp;</font><span style="font-size:13.333333969116211px;font-family:Arial,Helvetica,sans-serif;color:rgb(136,136,136);border:0px;margin:0px;padding:0px">June 2013 &nbsp;&nbsp;</span><span style="font-size:13.333333969116211px;font-family:Arial,Helvetica,sans-serif">“A perk is something you offer people....</span><a href="http://home.e4d.in/blog" style="font-size:13.333333969116211px;font-family:Arial,Helvetica,sans-serif">more&gt;&gt;</a></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><font color="#8e7cc3" size="3"><b><a href="http://home.e4d.in/blog">E4D TEST-RUN LAUNCHED!!!</a></b></font><font size="2" style="color:rgb(136,136,136);font-family:Arial,Helvetica,sans-serif">&nbsp;3&nbsp;</font><span style="color:rgb(136,136,136);font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;border:0px;margin:0px;padding:0px">May 2013 &nbsp; </span><span style="font-size:13.333333969116211px;font-family:Arial,Helvetica,sans-serif">Perhaps it’s a bit too early to celebrate, but E4D....</span><a href="http://home.e4d.in/blog" style="font-size:13.333333969116211px;font-family:Arial,Helvetica,sans-serif">more&gt;&gt;</a></li><li style="border:0px;margin:0px;padding:6px 0px;background-image:url();display:block"><span style="color:rgb(136,136,136);font-family:Arial,Helvetica,sans-serif;font-size:13.333333969116211px;border:0px;margin:0px;padding:0px"><br></span></li></ul></div></td></tr></tbody></table>
+
+
+    <div id="sites-canvas-main" class="sites-canvas-main">
+    <div id="sites-canvas-main-content">
+    <div xmlns="http://www.w3.org/1999/xhtml" class="sites-layout-name-three-column-hf sites-layout-vbox"><div class="sites-layout-tile sites-tile-name-header"><div dir="ltr"><h2 style="border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6"><a name="TOC-Diverse-courses-catalog-from-top-Universities"></a><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><div style="font-size:21px"><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000"><div style="display:inline!important"><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000"><div style="display:inline!important"></div></font></b></div></font></b></div><div><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000"><div style="display:inline!important"><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000" size="5"><div style="display:inline!important">Diverse courses catalog from top Universities</div></font></b></div></font></b></div></font></b></h2><p style="border:0px;margin:0px 0px 15px;padding:0px;font-size:13.333333969116211px;line-height:20px">E4D provides an “academic interface” for the so-called MOOCs (massive open online courses), offered through web-based services such as edX (www.edx.org), Coursera (www.coursera.org), and Udacity (www.udacity.com). Participants choose from a vast variety of courses spread across many disciplines, taught by distinguished professors from leading international universities. E4D internet facilities are available at all hours of the day, for participants to ingest course lectures and materials at their own individual pace. Moreover, we aim to create environments conducive to learning, equipped with basic amenities like 24×7 water and electricity.</p><p style="border:0px;margin:0px 0px 15px;padding:0px;font-size:13.333333969116211px;line-height:20px"><br></p><p style="border:0px;margin:0px 0px 15px;padding:0px;line-height:20px"><font size="5"><b>Laboratory Coursework</b></font></p><p style="border:0px;margin:0px 0px 15px;padding:0px;line-height:20px"><span style="font-size:13.333333969116211px">E4D workshop facilities, laboratory resources and technical staff enable participants to complete basic laboratory courses in biology/biotechnology, chemistry, computer science, electronics, mechanical engineering, and more!</span></p><font size="3"><br style="font-family:georgia,serif"></font></div></div><table cellspacing="0" class="sites-layout-hbox"><tbody><tr><td class="sites-layout-tile sites-tile-name-content-1"><div dir="ltr"><h2 style="border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6;font-size:21px"><a name="TOC-Flexible-Scheduling"></a><font color="#000000">Flexible Scheduling</font></h2><font color="#000000"><br></font><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000">E4D facilities are open 24 hours/day, 7 days/week, to accommodate constraints on participants’ schedules due to real-world commitments (e.g., employment, family care, health issues). E4D participants can arrange to learn on their own preferred schedules. (Yes, it is possible to carry out university-level coursework and also work a full-time job!)</font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><br></div><div><font color="#000000" size="5"><span style="line-height:20px"><b>Accessible Facilities</b></span></font></div><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px">E4D makes every effort to minimize constraints on participation posed by physical disabilities and sensory impairments. Special arrangements can be made to accommodate participants with visual and hearing impairments, as well as those with mobility challenges.</span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><br></div><div><br></div><div><font size="5"><span style="line-height:20px"><b>Industry exposure and Internships</b></span></font></div><div><b style="border:0px;margin:0px;padding:0px"><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div></b></div><div><br></div><div><span style="font-size:13.333333969116211px;line-height:20px">Through internship and research opportunities, E4D aims to provide all participants with early and frequent exposure to their chosen industries and professional fields. Participants are strongly encouraged to extend their practical work experience by performing internships with local and remote companies and universities, particularly during periods when little or no coursework is undertaken. Substantial E4D resources are committed to facilitate connection of participants with suitable internship opportunities. Participants are also be encouraged to make industry contacts independently, both to arrange internships and to connect their contacts with E4D personnel, thereby facilitating future internship opportunities for other E4D participants.</span></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div></div></td><td class="sites-layout-tile sites-tile-name-content-2"><div dir="ltr"><font size="5"><b>Free of Charge !</b></font><div><div><font color="#000000"><span style="font-size:13.333333969116211px;line-height:20px"><br></span></font></div><div><font color="#000000"><span style="font-size:13.333333969116211px;line-height:20px">Participants are not charged tuition for coursework completed through E4D. Equipment, facilities, and required funds must all be secured through government and community support. Ultimately, national and state governments bear the great responsibility of extending public access to higher education. We expect they will recognize the E4D&nbsp;</span><span style="font-size:13.333333969116211px;line-height:20px">strategy as a more sensible investment than establishing thousands of new faculty-based colleges.</span><span style="font-size:13.333333969116211px;line-height:20px">&nbsp;</span></font></div><div><div style="display:block;text-align:left"><br></div></div></div><div style="display:block;text-align:left"><br></div><div style="display:block;text-align:left"><br></div><div style="display:block;text-align:left"><font size="5"><b>Academic and Career Planning</b></font></div><div style="display:block;text-align:left"><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px">E4D counsellors meet with participants several times upon initial enrollment, and then at 2-3 month intervals, to help participants lay out a goal-oriented academic plan and to select coursework and internships appropriately. At each planning session, participants have the option to adjust or refine their academic plans according to their updated career objectives.</span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><br></div><div><font size="5"><span style="line-height:20px"><b>Innovation Hubs and Experiential learning</b></span></font></div><div><font size="5"><span style="line-height:20px"><b><br></b></span></font></div><div><font size="5"><span style="line-height:20px"><b><br></b></span></font></div><div><span style="font-size:13.333333969116211px;line-height:20px">At the core of each E4D facility is a workshop space dedicated to&nbsp;</span><i style="border:0px;margin:0px;padding:0px;font-size:13.333333969116211px;line-height:20px">experiential learning and innovative research</i><span style="font-size:13.333333969116211px;line-height:20px">, an “Innovation Hub”. E4D participants have 24×7 access to common construction tools, basic electronics equipment, and a vast collection of raw/recycled materials, restocked through bulk purchase, materials recycling, and parts harvesting from discarded and disused equipment. Work conducted by E4D participants at Innovation Hubs Centre facilities is showcased intermittently at “TechMeet” events, organized in close collaboration with the participants themselves. Participants interact with representatives from corporations, universities, and other prospective employers, to facilitate arrangement of internships, and ultimately, employment.</span></div></div></div></td><td class="sites-layout-tile sites-tile-name-content-3"><div dir="ltr"><font size="5"><b>Life Skills</b></font><br><font color="#000000" size="2"><br></font><span style="color:rgb(0,0,0);font-size:small">Participants will be able to acquire life skills such as Digital literacy, English language literacy, Self-defense, Women empowerment &nbsp;through periodic workshops arranged in collaboration with reputed organizations.</span><font color="#000000" size="2"><br></font><div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><br></div><div><br></div><div><font size="5"><b>Certificates and Transcripts</b></font></div><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px">Certificates awarded by EDx/Coursera/Udacity and similar online programs are verified by E4D and recorded in a cumulative record. Thereafter, upon request of the participant, E4D will issue a formal, independently verified “course transcript”.</span></b></div></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><br></div><div><font size="5"><b>Unrestricted transfer and Path jumping</b></font></div><div><font size="5"><b><br></b></font></div><div><span style="font-size:13.333333969116211px;line-height:20px">Participants can arrange to access facilities at any E4D location, irrespective of their initial enrollment location. College/university students are encouraged to participate. E4D can supplement study at conventional institutions, or it can function as an independent alternative. Moreover, participants are never “locked in” to a particular area of study, but rather have the opportunity to modify their academic plan based on practical experience with courses and internships.</span></div></div></td></tr></tbody></table><div class="sites-layout-tile sites-tile-name-footer"><div dir="ltr"><div style="text-align:center"><span style="font-size:x-large;font-weight:bold">Goal-oriented, Practical education</span></div><div style="text-align:left"><span style="font-size:13.333333969116211px;line-height:20px">Individualized course plans are selected and refined by participants themselves during regular academic counseling sessions.</span></div><div>
+    <div style="text-align:right">
+    <br><br><hr size="2" style="margin-left:auto;margin-right:auto" width="99%">
+    <a href="http://home.e4d.in/config/facebook.png?attredirects=0">
+    </a>
+    <div>
+    <div>&nbsp;
+
+    <a href="https://www.facebook.com/edu4development" target="_blank"><img alt="facebook" height="32" src="http://home.e4d.in/_/rsrc/1379102445353/communioncorp_facebook.png?height=32&amp;width=32" style="margin-right:15px" width="32"></a>
+    <a href="http://home.e4d.in/blog" target="_blank"><img alt="twitter" height="32" src="http://home.e4d.in/_/rsrc/1379102445353/communioncorp_twitter.png?height=32&amp;width=32" style="margin-right:15px" width="32"></a>
+    <br>
+    </div>
+    </div>
+    </div>
+    </div>
+    <hr size="2" style="margin-left:auto;margin-right:auto" width="99%">
+    <br><div></div><br></div></div></div>
+    </div>
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------------->
+
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+    							<!-- ENGLISH+COMPUTERS
+
+
+
+                                    - [myefa.org] Cyberstep English For All (EFA)
+                                    http://www.myefa.org/login.cfm
+                                    http://www.myefa.org/pdfs/EFAGuide.pdf
+                                     materials are designed for adult basic instruction delivered with the aid of technology – any time, any place, and at any pace. English for All consists of five stories that feature a multi-ethnic cast introduced by a friendly wizard who guides you through the 20 episodes and provides simple explanations of the basic points of grammar that are presented.
+                                    [very engaging video:]
+                                    http://www.myefa.org/assets/header_logo.gif
+                                    Student Registration: http://www.myefa.org/login.cfm?fuseaction=streg  Class Password: E4Dpassword
+
+
+                                    - USA Learns
+                                    http://www.usalearns.org
+                                    Learn English free! A site for adults to improve English speaking, pronunciation, listening, reading, spelling, writing and grammar.
+
+                                    First time student sign-up:
+                                    http://www.usalearns.org/index/signUpClass.cfm
+                                    Your Teacher's Last Name:  E4D
+                                    Your Class Password: password1 OR password2 OR password3
+
+                                    Student class LOGIN:  http://www.usalearns.org/index/classlogin.cfm (When you visit first time, click "Need to register for a class? Register now!" link at top-right)
+
+                                    http://www.usalearns.org/class/index.cfm
+                                    (can choose "Register Now" or "Sign In")
+
+                                    http://www.usalearns.org/teacher/
+                                    http://www.usalearns.org/teacher/teacherSignin.cfm
+
+                                    http://www.usalearns.org/images/logo.jpg
+                                    http://www.usalearns.org/images/logosmall_class.jpg
+
+
+
+    								http://www.gcflearnfree.org/learnenglish
+    								    http://www.gcflearnfree.org/learnenglish/simpleenglish
+    								    http://www.gcflearnfree.org/readingactivities
+    								    http://www.gcflearnfree.org/grammar
+
+
+
+    								http://media.gcflearnfree.org/assets/logo/logo.png
+    								http://media.gcflearnfree.org/assets/logo/logo-home.png
+                                -->
+
+
+
+    					<div class="panel panel-default"><!---.STUDY. SECTION-TWO-->
+					      <div id="collapseTwo" class="panel-collapse collapse">
+
+
+
+                            <ul class="nav nav-tabs" id="myTab">
+                                <li class="active"><a href="#start" data-toggle="tab"> <big><big><strong>Start Here!</strong></big></big> </a></li>
+                                <li><a href="#english" data-toggle="tab"> <big><strong>LEARN ENGLISH</strong></big> </a></li>
+                                <li><a href="#courses" data-toggle="tab"> <big><strong>FIND COURSES</strong></big> </a></li>
+                                <li><a href="#topics" data-toggle="tab"> <big><strong>TUTORIALS by TOPIC</strong></big> </a></li>
+                                <li><a href="#peerlearning" data-toggle="tab"> <big><strong>PEER-LEARNING!</strong></big> </a></li>
+                            </ul>
+
+<!---TABS------------------><div class="tab-content">
+
+<!----------START--------------><div class="tab-pane active" id="start" style="padding-left:10px; padding-top:10px;">
+                        	        <h2>GOAL #1: Learn the Computer Keyboard:
+                        	            <p style="position: relative; left:15px; padding-right:50px; color:green">
+                        	                <small>Get nice and comfortable using this 50+ key interface.  And don't forget to have fun!  </small>
+                        	            </p>
+                        	        </h2>
+                                    <h3>Instructions:</h3>
+                                    <p>1. <a href="http://bit.ly/1lwDE26" target="_blank"> <u><big><b>Click HERE to sign in to your TypingClub account.</b></big></u></a> </p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>(If above link fails, go to <a href="http://www.typingclub.com/login.html" target="_blank"><u>http://www.typingclub.com/login.html</u></a>, and choose option to "Sign in using your account with <b>GOOGLE</b>".) </small></p>
+                                    <p>2. Start with the first exercise, <b>Alphabets <big>1</big></b> (<em>Keys j & f</em>), and follow the on-screen directions.
+                                        Try to get all three stars! <img src="img/TypingClub_3stars.png" width="10%" alt="three stars image"></p> <!--src="http://www.typingclub.com/m/STARS/3.png"-->
+                                    <p>3. Try every exercise up until Alphabets <big>35</big>  (<em>Practice</em>). <small>If you wish, you may continue with "<em>Advanced Level</em>" exercises, but it is not required.</small></p>
+                                    <br>
+                                    <h2>GOAL #2: Think Like an Academic</h2>
+
+
+
+    								http://parsnip.library.ubc.ca/ikblc/ai/
+    								"These fun and interactive scenarios have been designed to educate and inform you about plagiarism and academic integrity.
+    								Choose your character, watch the scnarios, and select your course of action wisely! "
+    								TRANSLATION OF TEXT TO LOCAL LANGUAGES IS REQUIRED --- may be fairly straightforward.
+
+    								10 Types of Plagiarism: https://www.youtube.com/watch?v=EF5eFeJMplA
+
+
+    								What is Plagiarism? (Part 1 of 3) https://www.youtube.com/watch?v=4P05vgxDoPU
+    								Plagiarism: Real Life Examples (Part 2 of 3)  https://www.youtube.com/watch?v=96QEIDznXI4
+    								The Cite is Right: The Quiz Show (Part 3 of 3)https://www.youtube.com/watch?v=pSQH9OTOLBs
+    								All have complete subtitles.
+
+                                    <a href="http://www.ubc.ca/okanagan/_ubc_ulf/sites/library/swf/ai_skin.swf">http://www.ubc.ca/okanagan/_ubc_ulf/sites/library/swf/ai_skin.swf</a>:
+                                    Requires high level of English comprehension.
+
+
+                                    http://www.plagiarism.org/
+
+
+
+
+
+
+                                    <h2> Computer & Internet Basics <small>[OPTIONAL]</small> </h2>
+
+
+
+
+                                    <!--
+                                    COMPUTER + INTERNET BASICS
+    								http://www.gcflearnfree.org/computerbasics
+                                        http://www.gcflearnfree.org/googledocuments
+                                        http://www.gcflearnfree.org/googlespreadsheets
+                                        http://www.gcflearnfree.org/searchbetter
+    								    http://www.gcflearnfree.org/useinformationcorrectly
+
+    								http://isites.harvard.edu/icb/icb.do?keyword=paraphrasing
+    								http://gseacademic.harvard.edu/~instruct/gutman_library/paraphrasing/intro/player.html
+    								Full text of voiceover for each slide is available under "Notes" tab.  Can translate into Tamil/Kanada/Hindi?
+    								TOO HIGH LEVEL.
+
+
+
+    								-->
+
+
+
+                                </div><!---class="tab-pane active" id="start"-->
+
+<!----------ENGLISH------------><div class="tab-pane" id="english" style="padding-left:10px; padding-top:10px;">
+                        	        <h3>English Language Courses.
+                        	            <p style="position: relative; left:15px; padding-right:50px; color:green"><small>Improve your reading, writing, listening, speaking, and test-taking skills in English!</small></p>
+                        	        </h3>
+
+
+
+
+                                    <div class="panel-group" id="accordionAAA">
+
+                                      <div class="panel panel-default" id="panelAAA_1">
+                                        <div class="panel-heading" id="headAAA_1">
+                                          <h4 class="panel-title" id="titleAAA_1">
+                                            <p style="color:purple">Choose One:</p>
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_1" id="toggleAAA_1">
+                                                <!---TOGGLE #1---MOOEC LOGO-->
+                                                <img src="https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png" class=" " style="position: relative; left:0% ; top: 5px;" width="20%" alt="MOOEC English Lessons"/>
+                                            </a>
+                                            &nbsp;&nbsp;
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_2" id="toggleAAA_2">
+                                                <!---TOGGLE #2-----myEFA LOGO-->
+                                                <img src="img/myEFA_logo.gif" class=" " style="position: relative; left:0% ; top: 5px;" width="20%" alt="myEFA English Lessons"/>   <!--src="http://www.myefa.org/assets/header_logo.gif"-->
+                                            </a>
+                                            &nbsp;&nbsp;
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_3" id="toggleAAA_3">
+                                                <!---TOGGLE #3------U.S.A.Learns LOGO-->
+                                                <img src="img/USAlearns_logo.jpg" class=" " style="position: relative; left:0% ; top: 5px;" width="20%" alt="U.S.A.Learns English Lessons"/>  <!--src="http://www.usalearns.org/images/logo.jpg"-->
+                                            </a>
+                                            &nbsp;&nbsp;
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_4" id="toggleAAA_4">
+                                                <!---TOGGLE #4------ GCF-LearnFree LOGO-->
+                                                <img src="img/GCFlearnfree_logo.png" class=" " style="position: relative; left:0% ; top: 5px;" width="20%" alt="GCF-LearnFree English Lessons"/>  <!--src="http://media.gcflearnfree.org/assets/logo/logo-home.png"-->
+                                            </a>
+                                          </h4>
+                                        </div>
+                                        <div class="panel-collapse collapse" style="background-color:#CDE29A" id="collapseAAA_1">
+                                          <div class="panel-body" id="bodyAAA_1">
+                                                <h3>Instructions for MOOEC:</h3>
+                                                <p>1. <u><a href="http://mooec.com/users/register" target="_blank"><b>Register HERE for a MOOEC account</b></u></a>, by filling your Name and E4D email address (___@e4d.in)</p>
+                                                <p>2. Check your E4D email ---- you will receive a message from MOOEC to <em>confirm your registration</em></p>
+                                                <p>3. Select a course from one of these MOOEC categories:</p>
+                                                <!---CONTENT 1111111 ---MOOEC 4 PANEL ACCORDION-->
+                                                <div class="panel-group" id="accordionBBB">
+                                                  <div class="panel panel-default" id="panelBBB_1">
+                                                    <div class="panel-heading" id="headBBB_1">
+                                                      <h4 class="panel-title" id="titleBBB_1">
+                                                        <a style="color:black" data-toggle="collapse" data-parent="#accordionBBB" href="#collapseBBB_1" id="toggleBBB_1">
+                                                            <!---TOGGLE #1-->
+            		                                        <big><img src="https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png" class="" width="10%" alt="MOOEC English Lessons"/>
+            		                                        <b> » &nbsp;ENGLISH FUNDAMENTALS</b>
+            		                                        </big>
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div class="panel-collapse collapse" id="collapseBBB_1">
+                                                      <div class="panel-body" style="background-color:#CDE29A" id="bodyBBB_1">
+                                                            <!---CONTENT 1111111-->
+                        		                                <div class="container-fluid" style="position: relative; left:15px; ">
+                            		                                <div class="inner">
+                            		                                    <a href="http://mooec.com/courses/elementary-english-course"  target="_blank" style="color:maroon">
+                            		                                        <b><big>Elementary English Course</big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>[Basic Level]</small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em>"This course teaches basic English. You will learn how to communicate in English."</em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/improving-your-speaking  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Improving Your Speaking  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson helps you how to speak English fluently. You will improve your pronunciation and fluency."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/prepositions-as-language-chunks "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Prepositions As Language Chunks  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate]   </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em>"This lesson looks at prepositions (e.g., 'in', 'on', 'under', 'behind', 'between'). You will learn how to use prepositions in language chunks."</em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/common-mistakes  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Common Mistakes  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson focuses on common mistakes in English for ESL students (e.g., its/it's, loose/lose, me/I, good/well). You will improve your level of English grammar."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/subject-verb-agreement  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Subject-Verb Agreement  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson focuses on important English grammar. You will learn the rules for correct subject-verb agreement." </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/speaking-english-for-indic-speakers  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Speaking English for Indic Speakers  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px;">
+                            		                                        <em> "This lesson teaches pronunciation for indic speakers. You will improve your stress, rhythm, timing, and ability to hear and produce sounds in the English language."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/comma-splices-and-run-on-sentences-identification-and-solutions "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Comma Splices and Run-on Sentences: Identification and Solutions  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson teaches higher level grammar for exams and university. You will learn how to make complex grammar and improve your writing."  </em>
+                            		                                    </p>
+                            		                                </div>
+                                                                </div><!---.container-fluid-->
+                                                      </div>
+                                                    </div>
+                                                  </div><!---class="panel panel-default" id="panelBBB_1"-->
+
+                                                  <div class="panel panel-default" id="panelBBB_2">
+                                                    <div class="panel-heading" id="headBBB_2">
+                                                      <h4 class="panel-title" id="titleBBB_2">
+                                                        <a style="color:black" data-toggle="collapse" data-parent="#accordionBBB" href="#collapseBBB_2" id="toggleBBB_2">
+                                                            <!---TOGGLE #2-->
+            		                                        <big><img src="https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png" class="" width="10%" alt="MOOEC English Lessons"/>
+                                                            <b> » &nbsp;ENGLISH LIFE SKILLS</b>
+                                                            </big>
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div class="panel-collapse collapse" id="collapseBBB_2">
+                                                      <div class="panel-body" id="bodyBBB_2">
+                                                            <!---CONTENT 2222222-->
+                        		                                <div class="container-fluid" style="position: relative; left:15px ">
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/asking-someone-for-a-job   "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Asking Someone for a Job  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson focuses on using English to get a job. You will learn language useful to ask for a job."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/referencing  "  target="_blank" style="color:maroon">
+                            		                                        <b><big>  Referencing! </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson teaches writing skills at university. You will learn how to reference and rules about never copying."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/basic-paraphrasing   "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Basic Paraphrasing  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson teaches writing skills for university. You will learn the skill of paraphrasing."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/presentation-impact-technique  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Presentation Impact Technique  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Upper Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson focuses on making a presentation at university. You will learn skills for university life, vocabulary, pronunciation, and writing."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                            </div><!---.container-fluid-->
+                                                      </div>
+                                                    </div>
+                                                  </div><!---class="panel panel-default" id="panelBBB_2"-->
+
+                                                  <div class="panel panel-default" id="panelBBB_3">
+                                                    <div class="panel-heading" id="headBBB_3">
+                                                      <h4 class="panel-title" id="titleBBB_3">
+                                                        <a style="color:black" data-toggle="collapse" data-parent="#accordionBBB" href="#collapseBBB_3" id="toggleBBB_3">
+                                                            <!---TOGGLE #3-->
+            		                                        <big><img src="https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png" class="" width="10%" alt="MOOEC English Lessons"/>
+                                                            <b> » &nbsp;ENGLISH TO IMPRESS YOUR RELATIVES</b>
+                                                            </big>
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div class="panel-collapse collapse" id="collapseBBB_3">
+                                                      <div class="panel-body" id="bodyBBB_3">
+                                                            <!---CONTENT 3333333-->
+                        		                                <div class="container-fluid" style="position: relative; left:15px ">
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/coffee-culture   "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Coffee Culture  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em>  "This lesson is most relevant to students who want to work in an English speaking country. You will learn how to better understand fluent spoken English, vocabulary and idiomatic language." </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/wild-backyards   "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Wild Backyards  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermdeiate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson focuses on developing your skills for reading and listening. You will learn about common plants and animals found in Australian backyards."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/coastal-ecosystems   "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Coastal Ecosystems  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson is for students studying academic English. You will learn ideas, vocabulary, and phrases connected to the environment."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/animals-adapting-to-cope-with-climate-change-a1af9620-f2cd-4b2c-b9c2-3e4645ce617b   "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Animals Adapting to Cope with Climate Change  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Upper Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson focuses on academic reading skills and is useful preparation for the IELTS or TOEFL exams."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                            </div><!---.container-fluid-->
+                                                      </div>
+                                                    </div>
+                                                  </div><!---class="panel panel-default" id="panelBBB_3"-->
+
+                                                  <div class="panel panel-default" id="panelBBB_4">
+                                                    <div class="panel-heading" id="headBBB_4">
+                                                      <h4 class="panel-title" id="titleBBB_4">
+                                                        <a style="color:black" data-toggle="collapse" data-parent="#accordionBBB" href="#collapseBBB_4" id="toggleBBB_4">
+                                                            <!---TOGGLE #4-->
+            		                                        <big><img src="https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png" class="" width="10%" alt="MOOEC English Lessons"/>
+                                                            <b> » &nbsp;ENGLISH FOR PROVING YOU KNOW ENGLISH (IELTS/TOEFL)</b>
+                                                            </big>
+                                                        </a>
+                                                      </h4>
+                                                    </div>
+                                                    <div class="panel-collapse collapse" id="collapseBBB_4">
+                                                      <div class="panel-body" id="bodyBBB_4">
+                                                            <!---CONTENT 44444444-->
+                        		                                <div class="container-fluid" style="position: relative; left:15px ">
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/toefl-lesson-1  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> TOEFL: Lesson 1  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson is for TOEFL students. You will increase your test taking skills."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/free-ielts-listening-test  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> IELTS Listening Test  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This is a a free Listening test. You will improve your knowledge of the IELTS test."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/listening-tips  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Listening Tips  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson teaches listening skills for the IELTS exam. You will improve your listening score and avoid mistakes."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/ielts-task-1-prepositions "  target="_blank" style="color:maroon">
+                            		                                        <b><big>  Prepositions Explained (IELTS)  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate]   </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "This lesson is about IELTS writing Task 1. You will learn how to use four important prepositions."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                                <div class="inner">
+                            		                                    <a href=" http://mooec.com/courses/grammar-guru-1  "  target="_blank" style="color:maroon">
+                            		                                        <b><big> Grammar Guru 1  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate]  </small></b>
+                            		                                    </a>
+                            		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                            		                                        <em> "The Grammar Guru talks about 'Complex Grammar' for the IELTS exam."  </em>
+                            		                                    </p>
+                            		                                </div>
+                            		                            </div><!---.container-fluid-->
+                                                      </div>
+                                                    </div>
+                                                  </div><!---class="panel panel-default" id="panelBBB_4"-->
+
+
+                                                </div><!---class="panel-group" id="accordionBBB"-->
+
+
+
+
+
+                                          </div>
+                                        </div>
+                                      </div><!---class="panel panel-default" id="panelAAA_1"-->
+
+                                      <div class="panel panel-default" id="panelAAA_2">
+                                        <!--div class="panel-heading" id="headAAA_2">
+                                          <h4 class="panel-title" id="titleAAA_2">
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_2" id="toggleAAA_2">
+                                                < !---TOGGLE #2-----myEFA LOGO-- >
+                                                <img src="http://www.myefa.org/assets/header_logo.gif" class=" " style="position: relative; left:0% ; top: 5px;" width="25%" alt="myEFA English Lessons"/>
+                                            </a>
+                                          </h4>
+                                        </div-->
+                                        <div class="panel-collapse collapse" id="collapseAAA_2">
+                                          <div class="panel-body" id="bodyAAA_2">
+                                            CONTENT 2222222
+                                          </div>
+                                        </div>
+                                      </div><!---class="panel panel-default" id="panelAAA_2"-->
+
+                                      <div class="panel panel-default" id="panelAAA_3">
+                                        <!--div class="panel-heading" id="headAAA_3">
+                                          <h4 class="panel-title" id="titleAAA_3">
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_3" id="toggleAAA_3">
+                                                < !---TOGGLE #3------U.S.A.Learns LOGO-- >
+                                                <img src="http://www.usalearns.org/images/logo.jpg" class=" " style="position: relative; left:0% ; top: 5px;" width="25%" alt="U.S.A.Learns English Lessons"/>
+                                            </a>
+                                          </h4>
+                                        </div-->
+                                        <div class="panel-collapse collapse" id="collapseAAA_3">
+                                          <div class="panel-body" id="bodyAAA_3">
+                                            CONTENT 3333333
+                                          </div>
+                                        </div>
+                                      </div><!---class="panel panel-default" id="panelAAA_3"-->
+
+                                      <div class="panel panel-default" id="panelAAA_4">
+                                        <!--div class="panel-heading" id="headAAA_4">
+                                          <h4 class="panel-title" id="titleAAA_4">
+                                            <a data-toggle="collapse" data-parent="#accordionAAA" href="#collapseAAA_4" id="toggleAAA_4">
+                                                < !---TOGGLE #4------ GCF-LearnFree LOGO-- >
+                                                <img src="http://media.gcflearnfree.org/assets/logo/logo-home.png" class=" " style="position: relative; left:0% ; top: 5px;" width="25%" alt="GCF-LearnFree English Lessons"/>
+                                            </a>
+                                          </h4>
+                                        </div-->
+                                        <div class="panel-collapse collapse" id="collapseAAA_4">
+                                          <div class="panel-body" id="bodyAAA_4">
+                                            CONTENT 4444444
+                                          </div>
+                                        </div>
+                                      </div><!---class="panel panel-default" id="panelAAA_4"-->
+                                    </div><!---class="panel-group" id="accordionAAA"-->
+                                </div><!---class="tab-pane" id="english"-->
+
+<!----------COURSES------------><div class="tab-pane" id="courses" style="padding-left:10px; padding-top:10px;">
+
+                                    <h3> Instructions for Course Selection: </h3>
+                                    <p>1. The boxes below link to different "course-finding services", which can help you find the tutorials or univeristy courses that are right for you.
+                                            <b>Choose one of the top 4 boxes, and click the LOGIN link. </b></p>
+                                    <p>2. The <u>first time</u> you LOGIN to a service website, follow the directions given to complete your registration.
+                                            After registration, you can login anytime very easily with your E4D emaill address and password. </p>
+                                    <p>3. Decide what topic or subject area you want study.  For example, "biology" or "mechanics" or "javascript" or "design" or "economics" or "birds" or "airplanes" or.....ANYTHING YOU WANT!! :)  </p>
+                                    <p>4. To start browsing courses, <b>type your desired topic or subject into the search field</b> at the top of the page. (It is usually labelled as "<em>Search Courses</em>" or "<em>What do you want to learn?</em>" or something similar.)   </p>
+                                    <p>5. If you have any doubts or difficulty, please ask for assistance from an E4D staff member or another student! </p>
+        							<!--h4 class="page-header">
+        		                        University Courses & Tutorials
+        		                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><em>Here's where things get interesting! :)</em></small></p>
+        		                    </h4-->
+        							<!-- COURSE INDICES
+        								rationale: many services index MOOCs and provide user ratings, currently unclear which offer preferable interface or more useful info.  here we provide E4D users access to a range of such sites, with goal of evaluating user experiences and refining choices constructively.
+        								todo: enable voting/feedback on each site
+        							    https://degreed.com/
+        							    http://www.coursetalk.com/		[http://www.coursetalk.com/login/google-oauth2/]
+        							    http://knollop.com/				[http://knollop.com/auth/start/google-oauth2]
+        								http://www.topfreeclasses.com/	[http://www.topfreeclasses.com/auth/google?return=%2F]
+        								http://www.mooctivity.com/		[http://www.mooctivity.com/accounts/google/login/?process=login]
+        							    https://www.class-central.com/
+        							    http://www.mooc-list.com/
+        							    http://www.worldscienceu.com/
+        								http://openstudy.com/
+        								http://www.learningadvisor.com/
+        								https://gibbon.co/			[https://gibbon.co/login/google-oauth2/]    -->
+
+
+        							<!-- Small boxes (Stat box) -->
+        							<div class="row">
+        		                        <div class="col-md-6">
+        		                            <!-- small box -->
+        		                            <div class="small-box bg-orange">
+        		                                <div class="inner">
+        		                                    <!--h3> knollop </h3--> <img src="img/knollop_smileylogoblue.png" class=" " alt="logo"/>  <!--src="http://knollop.com/assets/images/logo/smileylogoblue.png"-->
+        		                                    <p><b> "...search for the best online courses in any subject, connect with students, and build your education profile....Find online learning materials that are right for you!" </b></p>
+        		                                </div>
+        		                                <!--div class="icon">
+        		                                    <i class="ion ion-bag"></i>
+        		                                </div-->
+        		                                <a href="http://knollop.com/auth/start/google-oauth2" class="small-box-footer" target="_blank"> <big><b>LOGIN to Knollop.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+        		                            </div>
+        		                        </div><!-- ./col -->
+
+        		                        <div class="col-md-6">
+        		                            <!-- small box -->
+        		                            <div class="small-box bg-green">
+        		                                <div class="inner">
+        		                                    <!--h3> coursetalk </h3-->  <img src="https://coursetalk-cdn.s3.amazonaws.com/s/img/logo.png" class=" " alt="logo"/>
+        		                                    <br><br><p><b> "...a comprehensive search of MOOC’s and open enrollment courses...students can enroll in programs, communicate with professors and other students and rate & review courses." </b></p>
+        		                                </div>
+        		                                <!--div class="icon">
+        		                                    <i class="ion ion-stats-bars"></i>
+        		                                </div-->
+        		                                <a href="http://www.coursetalk.com/login/google-oauth2/" class="small-box-footer" target="_blank"> <big><b>LOGIN to Coursetalk.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+        		                            </div>
+        		                        </div><!-- ./col -->
+        		                    </div>
+        							<!-- /.row -->
+        							<!-- Small boxes (Stat box) -->
+        							<div class="row">
+        		                        <div class="col-md-6">
+        		                            <!-- small box -->
+        		                            <div class="small-box bg-purple">
+        		                                <div class="inner">
+        		                                    <!--h3> topfreeclasses </h3-->   <img src="img/TopFreeClasses_logo.png" class=" " width="150" height="95" alt="logo"/>  <!--src="http://www.topfreeclasses.com/assets/images/top-free-classes.png"-->
+        		                                    <p><b> "...a one-stop place for discovering new classes, checking out other students' opinions, and sharing your experiences." </b></p>
+        		                                </div>
+        		                                <!--div class="icon">
+        		                                    <i class="ion ion-stats-bars"></i>
+        		                                </div-->
+        		                                <a href="http://www.topfreeclasses.com/auth/google?return=%2F" class="small-box-footer" target="_blank"> <big><b>LOGIN to topfreeclasses.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+        		                            </div>
+        		                        </div><!-- ./col -->
+        		                        <div class="col-md-6">
+        		                            <!-- small box -->
+        		                            <div class="small-box bg-blue">
+        		                                <div class="inner">
+        		                                    <h3> mooctivity </h3>  <br>   <img src="img/mooctivity_logo.png" class=" " style="position: absolute; right: 0px; top: 0px;" width="75" height="75" alt="logo"/>   <!--src="http://www.mooctivity.com/static/img/mooctivity_logo.png"-->
+        		                                    <b> "...MOOC search engine and social network" &nbsp;&nbsp; <br>"Find the best online courses (MOOCs)..., rate them and share course experiences with friends"  </b>
+        		                                </div>
+        		                                <!--div class="icon">
+        		                                    <i class="ion ion-stats-bars"></i>
+        		                                </div-->
+        		                                <a href="http://www.mooctivity.com/accounts/google/login/?process=login" class="small-box-footer" target="_blank"> <big><b>LOGIN to mooctivity.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+        		                            </div>
+        		                        </div><!-- ./col -->
+        		                    </div>
+        							<!-- /.row -->
+        							<!-- Small boxes (Stat box) -->
+        							<div class="row">
+        		                        <div class="col-md-6">
+        		                            <!-- small box -->
+        		                            <div class="small-box bg-maroon">
+        		                                <div class="inner">
+        		                                    <!--h3> degreed </h3-->   <img src="https://degreed.com/content/img/new/logo.png" class=" " alt="logo"/>  <!--https://az168019.vo.msecnd.net/content/img/new/glasses_logo.png -->
+        		                                    <br><br><p><b> "...helps you track, organize, and showcase your education, and then makes it easy to find what to learn next." </b></p>
+        		                                </div>
+        		                                <!--div class="icon">
+        		                                    <i class="ion ion-bag"></i>
+        		                                </div-->
+        		                                <a href="https://degreed.com/account/login" class="small-box-footer" target="_blank"> <big><b>LOGIN to Degreed.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+        		                            </div>
+        		                        </div><!-- ./col -->
+        		                        <div class="col-md-6">
+        		                            <!-- small box -->
+        		                            <div class="small-box bg-red">
+        		                                <div class="inner">
+        		                                    <h3> gibbon </h3> <br> <img src="https://d3i5ls5z2ayn6d.cloudfront.net/img/gibbon-icon-144.png" class=" " style="position: absolute; right: 0px; top: 0px;" width="20%" alt="logo"/>  <!--https://d3i5ls5z2ayn6d.cloudfront.net/img/gibbon-logo.png -->
+        		                                    <b> "...a peer-to-peer learning platform where everyone can learn and teach with the help of playlists. A playlist is an easy way to share articles, links, videos and books to learn anything." </b>
+        		                                </div>
+        		                                <!--div class="icon">
+        		                                    <i class="ion ion-ios7-briefcase-outline"></i>
+        		                                </div-->
+        		                                <a href="https://gibbon.co/login/google-oauth2/" class="small-box-footer" target="_blank"> <big><b>LOGIN to Gibbon.co [sic]</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+        		                            </div>
+        		                        </div><!-- ./col -->
+        		                    </div>
+        							<!-- /.row -->
+
+                                    <br>
+                                    <div style="color:grey; line-height:10%; font-size:7px">
+                                        <p>To do:</p>
+                                        <p>- Add participant average rating to each box (5-star)</p>
+                                        <p>- Add MyRating to each box (5-star)</p>
+                                        <p>- Add participant Comments popup link to each box</p>
+                                        <p>- Add MyComment field to each box</p>
+                                        <p>- Implement rating/comment handling (user-specific & central aggregating)</p>
+                                    </div>
+
+
+
+
+                                </div><!---class="tab-pane" id="courses" style="background-color:#FFEDFF"-->
+
+<!----------TOPICS-------------><div class="tab-pane" id="topics" style="padding-left:10px; padding-top:10px;">
+
+
+                                </div><!---class="tab-pane" id="topics"-->
+
+<!----------PEER-LEARNING------><div class="tab-pane" id="peerlearning" style="padding-left:10px; padding-top:10px;">
+
+
+                                </div><!---class="tab-pane" id="peerlearning"-->
+
+                            </div><!--class="tab-content"-->
+
+
+
+
+
+
+
+
+                          </div><!---div id="collapseTwo" class="panel-collapse collapse"-->
+    					</div><!--div class="panel panel-default"-->
+
+
+    					<div class="panel panel-default"><!---.CREATE. SECTION-THREE-->
+    					    <div id="collapseThree" class="panel-collapse collapse">
+    					      <div id="panel3_content" class="panel-body">
+
+    							<h4 class="page-header">
+    		                        Projects & whatnot
+    		                        <small>In the beginning there was the....</small>
+    		                    </h4>
+    							<!-- Solid boxes -->
+    							<div class="row">
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid bg-navy">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Tile 1</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Tile 1 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid bg-light-blue">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Tile 2</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Tile 2 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid bg-aqua">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title"> Tile 3</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Tile 3 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+    		                    </div>
+    		                    <!-- /.row -->
+
+    		                    <div class="row">
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid bg-red">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title"> Tile 4</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Tile 4 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid bg-green">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title"> Tile 5</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Tile 5 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid bg-yellow">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title"> Tile 6</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Tile 6 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+    		                    </div>
+    		                    <!-- /.row -->
+
+
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---.COMMUNICATE. SECTION-FOUR -->
+    					    <div id="collapseFour" class="panel-collapse collapse">
+    					      <div id="panel4_content" class="panel-body">
+
+    							<!-- Solid boxes -->
+    							<div class="row">
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title"> Box 1</h3>
+    		                                    <div class="box-tools pull-right">
+    		                                        <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    		                                        <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+    		                                    </div>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box 1 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <div class="box box-solid box-primary">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Box 2</h3>
+    		                                    <div class="box-tools pull-right">
+    		                                        <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    		                                        <button class="btn btn-primary btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+    		                                    </div>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box 2 CONTENT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Info box -->
+    		                            <div class="box box-solid box-info">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Box 3</h3>
+    		                                    <div class="box-tools pull-right">
+    		                                        <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    		                                        <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+    		                                    </div>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box o SNOT
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+    		                    </div>
+    		                    <!-- /.row -->
+
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---.ORGANIZE. SECTION-FIVE -->
+    					    <div id="collapseFive" class="panel-collapse collapse">
+    					      <div id="panel5_content" class="panel-body">
+    					        Blue nose
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---.EXPLORE. SECTION-SIX-->
+    					    <div id="collapseSix" class="panel-collapse collapse">
+    					      <div id="panel6_content" class="panel-body">
+    					        Purple feet
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---GOT-DOUBTS? SECTION-SEVEN-->
+    					    <div id="collapseSeven" class="panel-collapse collapse">
+    					      <div id="panel7_content" class="panel-body" style="height:3250px">
+    					        <h3>Join the club! :)
+    					            <small><p>Please post your questions/doubts in the form below, and we will respond by email. Thanks!</p></small>
+    					        </h3>
+    					        <br>
+    					        <br>
+                                <div class="container">
+                                    <form action="/sign" method="post">
+                                        <div>
+                                            <textarea name="useremail" class="input-block-level" id="useremail" style="display: none" >
+                                                <!--script type="text/javascript">document.write(document.getElementById('user_email').innerHTML);</script-->
+                                            </textarea>
+                                            <textarea name="content" class="input-block-level" rows="3" cols="50"></textarea>
+                                        </div>
+                                        <div style="padding-top:5px">
+                                            <input type="submit" class="btn btn-large btn-primary" value="Post Your Doubts!">
+                                        </div>
+                                    </form>
+                                    {% for greeting in greetings %}
+                                    <div class="row">
+                                        {% if greeting.author %}
+                                            <b>{{ greeting.author.nickname() }}</b> wrote:
+                                        {% else %}
+                                         An anonymous person wrote:
+                                        {% endif %}
+                                        <blockquote>{{ greeting.content }}</blockquote>
+                                    </div>
+                                    {% endfor %}
+                                </div><!----class="container"-->
+
+    					      </div><!---class="panel-body"-->
+    					    </div><!---class="panel-collapse collapse"-->
+    					</div><!--div class="panel panel-default"-----GOT-DOUBTS? SECTION-SEVEN-->
+
+
+					</div> <!--end class="panel-group" id="accordion"-->
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Morris.js charts -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <!-- Sparkline -->
+        <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+        <!-- jvectormap -->
+        <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+        <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+        <!-- fullCalendar -->
+        <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+        <!-- daterangepicker -->
+        <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        <!-- iCheck -->
+        <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+
+        <!-- AdminLTE for demo purposes -->
+        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
+
+
+		<script type="text/javascript">
+			/* In left sidebar, change active class to clicked button ---
+			  see http://stackoverflow.com/questions/19618863/changing-active-class-for-list-element */
+			$('#mySideButts').on('click','li', function(){
+			   $(this).addClass('active').siblings().removeClass('active');
+			});
+
+            /*Enable tabbable tabs via JavaScript (each tab needs to be activated individually)
+              see http://getbootstrap.com/javascript/#tabs */
+            $('#myTab a').click(function (e) {
+              e.preventDefault()
+              $(this).tab('show')
+            })
+		</script>
+
+
+        <!---Initialize CAROUSEL and adjust settings-->
+        <script>
+          $(document).ready(function(){
+            $('.carousel').carousel({
+              interval: 2000
+            });
+          });
+        </script>
+
+
+		<!--meta name="google-signin-clientid" content="CLIENT_ID" /-->
+		<meta name="google-signin-clientid" content="231344210046.apps.googleusercontent.com" />
+		<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email" />
+		<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity" />
+		<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+		<meta name="google-signin-callback" content="signinCallback" />
+
+		<script type="text/javascript">
+    		(function() {
+    		  var po = document.createElement('script');
+    		  po.type = 'text/javascript'; po.async = true;
+    		  po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+    		  var s = document.getElementsByTagName('script')[0];
+    		  s.parentNode.insertBefore(po, s);
+    		})();
+
+    		/* Executed when the APIs finish loading */
+    		function render() {
+    		  // Additional params
+    		  var additionalParams = {
+    		    'theme' : 'dark'
+    		  };
+    		  gapi.signin.render('myButton', additionalParams);
+    		}
+
+    		function signinCallback(authResult) {
+    		  if (authResult['status']['signed_in']) {
+    		    // Update the app to reflect a signed in user
+    		    // Hide the sign-in button now that the user is authorized, for example:
+    		    document.getElementById('gSignInWrapper').setAttribute('style', 'display: none');
+    		    document.getElementById('loggedinNavMenus').setAttribute('style', 'display: ');
+                $('.row-offcanvas').toggleClass('active');
+                $('.left-side').removeClass("collapse-left");
+                $(".right-side").removeClass("strech");
+                $('.row-offcanvas').toggleClass("relative");
+    		    document.getElementById('sidetoggle').setAttribute('style', 'display: block');
+    		    document.getElementById('E4Dlogo').setAttribute('src', 'img/E4Dicon_flip_100px.png');
+              	makeApiCall();
+    		  } else {
+    		    // Update the app to reflect a signed out user
+    		    // Possible error values:
+    		    //   "user_signed_out" - User is signed-out
+    		    //   "access_denied" - User denied access to your app
+    		    //   "immediate_failed" - Could not automatically log in the user
+    		    console.log('Sign-in state: ' + authResult['error']);
+                $('.left-side').addClass("collapse-left");
+                $(".right-side").addClass("strech");
+    		    document.getElementById('sidetoggle').setAttribute('style', 'display: none');
+    		    document.getElementById('E4Dlogo').setAttribute('src', 'img/E4Dicon_upup_100px.png');
+    		  }
+    		}
+
+    		// Load the API and make an API call.  Display the results on the screen.
+    		function makeApiCall() {
+    		// Step 4: Load the Google+ API
+    		gapi.client.load('plus', 'v1', function() {
+    		  // Step 5: Assemble the API request
+    		  var request = gapi.client.plus.people.get({
+    		    'userId': 'me'
+    		  });
+    		  // Step 6: Execute the API request
+    		  request.execute(function(resp) {
+    		    /*var heading = document.createElement('h4');
+    		    var image = document.createElement('img');
+    		    image.src = resp.image.url;
+    		    heading.appendChild(image);
+    		    heading.appendChild(document.createTextNode(resp.displayName));
+    		    document.getElementById('content').appendChild(heading); */
+    		    document.getElementById('user_name').innerHTML = resp.displayName;
+    		    document.getElementById('user_image').src = resp.image.url;
+    		    document.getElementById('user_image1').src = resp.image.url;
+    		    document.getElementById('user_info').innerHTML = resp.displayName;
+    		    document.getElementById('user_profile').href = resp.url;
+    		    document.getElementById('user_email').innerHTML = resp.emails[0].value;
+    		    document.getElementById('useremail').innerHTML = resp.emails[0].value;
+    		    document.getElementById('welcome_text').innerHTML = '<b>Welcome, ' + resp.name.givenName + '!</b>';
+    			/*console.log('ID: ' + resp.id);
+    			console.log('Display Name: ' + resp.displayName);
+    			console.log('Image URL: ' + resp.image.url);
+    			console.log('Profile URL: ' + resp.url);*/
+    		  });
+    		});
+    		}
+		</script>
+
+	    <!-- Place this asynchronous JavaScript just before your </body> tag
+	     see https://developers.google.com/+/web/signin/add-button-javascript for details-->
+	    <!--script type="text/javascript">
+	      (function() {
+	       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	       po.src = 'https://apis.google.com/js/client:plusone.js';
+	       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	     })();
+	    </script-->
+
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
+
+    </body>
+
+
+</html>
+{% endautoescape %}

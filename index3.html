@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>E4D.start()</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Morris chart -->
+        <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <!-- jvectormap -->
+        <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- fullCalendar -->
+        <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-blue">
+    
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="/" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                {E4D}
+				<img src="img/E4Dicon_flip_100px.png" class="icon" alt="E4Dlogo"/>
+            </a>              
+
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+
+				<div id="gSignInWrapper" class="navbar-right">
+				  <div id="myButton" class="btn btn-warning btn-lg">
+				    E4Ders, <b>LOGIN</b> here!
+				  </div>
+				</div>	    
+            
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                
+                <div id="loggedinNavMenus" class="navbar-right" style="display:none">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                <span class="label label-success">X</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have X messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar04.png" class="img-circle" alt="User Image"/>
+                                                </div>
+                                                <h4>
+                                                    Sender1
+                                                    <small><i class="fa fa-clock-o"></i> xx mins</small>
+                                                </h4>
+                                                <p>Message/Subject</p>
+                                            </a>
+                                        </li><!-- end message -->
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/rowlf.jpeg" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Sender2
+                                                    <small><i class="fa fa-clock-o"></i> xx hours</small>
+                                                </h4>
+                                                <p>Message/Subject</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">[LINK]See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-warning"></i>
+                                <span class="label label-warning">Y</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have Y notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-people info"></i> e.g., Ammoor manager gone rogue!
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">[LINK] View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span class="label label-danger">Z</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have Z tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Task#1
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Task#2
+                                                    <small class="pull-right">40%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-green" style="width: 75%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">75% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span id="user_name">Joe Mhama <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img id="user_image" src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p>
+                                        <b id="user_info"> Joe Mhama - Web Surfer </b>
+                                        <small id="user_email"> Member since 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!--li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing1</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing2</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing3</a>
+                                    </div>
+                                </li-->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a id="user_profile" href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <!--a href="{{ url|safe }}" class="btn btn-default btn-flat"> {{ url_linktext }} </a-->
+										<!-- google-account-logout-and-redirect: http://stackoverflow.com/questions/4202161/google-account-logout-and-redirect/14831349#14831349 -->
+                                        <a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://e4d.in" class="btn btn-danger btn-lg"> <b>LOGOUT</b> </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img id="user_image1" src="img/Rani_of_jhansi.jpg" class="img-circle" alt="User Image" />
+                        </div>
+                        <div id="welcome_text" class="pull-left info">
+                            <p> {{ url_linktext2 }} </p>
+
+                            <!--a href="#"><i class="fa fa-circle text-success"></i> Online</a-->
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <!--form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form-->
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+					  <div class="box">
+						<div class="box-body">
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								<i class="fa fa-home"></i> <b>HOME</b>
+							</a>
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+								<i class="glyphicon glyphicon-bookmark"></i> <b>.STUDY.</b> <!--i class="glyphicon glyphicon-certificate pull-right"></i--> 
+							</a>
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+								<i class="fa fa-wrench"></i> <b>.CREATE.</b> 
+							</a>
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+								<i class="fa fa-bullhorn"></i> <b>.COMMUNICATE.</b> 
+							</a>
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+								<i class="fa fa-calendar"></i> <b>.ORGANIZE.</b> 
+							</a>
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+								<i class="glyphicon glyphicon-road"></i> <b>.EXPLORE.</b> 
+							</a>
+							<a class="btn btn-block btn-social btn-default btn-lg" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+								<i class="fa fa-meh-o"></i> <em>Got Doubts?</em> 
+							</a>
+						</div>
+					  </div>
+
+
+						<!--div class="btn-group-vertical">						
+							<button class="btn btn-default btn-lg"> HOME</button>
+							<button class="btn btn-default btn-lg"> STUDY</button>
+							<button class="btn btn-default btn-lg"> CREATE</button>
+							<button class="btn btn-default btn-lg"> COMMUNICATE</button>
+							<button class="btn btn-default btn-lg"> ORGANIZE</button>
+							<button class="btn btn-default btn-lg"> EXPLORE</button>
+							<button class="btn btn-default btn-lg"> Got <i>DOUBTS</i>?</button>						
+						</div-->
+
+
+                        <!--li class="active">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> 
+                                <i class="fa fa-tower"></i> <span>HOME</span>
+                            </a>
+                        </li>
+                        <li>
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> 
+					        	<i></i><span> .STUDY. </span> <i class="fa fa-certificate"></i>
+					        </a>                            
+                        </li-->
+                        <!--li class="treeview">
+                            <a href="#"> <i class="fa fa-bar-chart-o"></i> <span>Charts</span> <i class="fa fa-angle-left pull-right"></i> </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                            </ul>
+                        </li-->
+
+                        <!--li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <i class="fa fa-wrench"></i> <span>.CREATE.</span> <i>
+                            </a>
+                        </li>
+
+                        <li class="treeview">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <i></i> <span>.COMMUNICATE.</span> <i class="glyphicon glyphicon-bullhorn"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                	<a href="#"><i class="fa fa-angle-double-right"></i> G+, Groups, Twitter, etc.</a>
+                                </li>
+                                <li>
+                                	<a href="pages/mailbox.html"><i class="fa fa-angle-double-right"></i> Mailbox (example only!)</a>
+                                </li>
+							</ul>	
+                        </li>
+
+                        <li class="treeview">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                <i class="fa fa-edit"></i> <span>.ORGANIZE.</span> <i class="fa fa-calendar"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                	<a href="#"><i class="fa fa-angle-double-right"></i> Tasks, gDrive, etc.</a> <i class="fa fa-group"></i><i class="fa fa-comments-o"></i>
+                                </li>
+                                <li>
+                                	<a href="pages/calendar.html"><i class="fa fa-angle-double-right"></i> Calendar (example only!)</a>
+                                </li>
+							</ul>	
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                <i class="fa fa-calendar"></i> <span>.EXPLORE.</span>
+                                <small class="badge pull-right bg-red">3</small>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                <i class="fa fa-question-sign"></i> <span>Got <i>Doubts</i>?</span> <i class="fa fa-meh-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="treeview disabled">
+                            <a href="#" class="disabled">
+                                <i class="fa fa-folder"></i> <span>::PATIENCE::</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
+                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
+                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
+                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section-->
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <!--section class="content-header">
+                    <h1> Dashboard  <small>Control panel</small> </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section-->
+
+                <!-- Main content -->
+                <section id="content" class="content">
+
+
+					<!-- These are inter-dependent collapsible divs (expanding one collapses the rest) -->
+					<div class="panel-group" id="accordion">
+					
+					  <div class="panel panel-default">
+					    <!--div class="panel-heading">
+					      <h4 class="panel-title">
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Collapsible Group Item #1 </a>
+					      </h4>
+					    </div-->
+					    <div id="collapseOne" class="panel-collapse collapse in">
+					      <div id="panel1_content" class="panel-body">
+
+
+							<h4 class="page-header">
+		                        Small Boxes
+		                        <small>Small boxes are used for viewing statistics. To create a small box use the class <code>.small-box</code> and mix &amp; match using the <code>bg-*</code> classes.</small>
+		                    </h4>
+							<!-- Small boxes (Stat box) -->
+							<div class="row">
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-aqua">
+		                                <div class="inner">
+		                                    <h3>
+		                                        150
+		                                    </h3>
+		                                    <p>
+		                                        New Orders
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-bag"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-green">
+		                                <div class="inner">
+		                                    <h3>
+		                                        53<sup style="font-size: 20px">%</sup>
+		                                    </h3>
+		                                    <p>
+		                                        Bounce Rate
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-stats-bars"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-yellow">
+		                                <div class="inner">
+		                                    <h3>
+		                                        44
+		                                    </h3>
+		                                    <p>
+		                                        User Registrations
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-person-add"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-red">
+		                                <div class="inner">
+		                                    <h3>
+		                                        65
+		                                    </h3>
+		                                    <p>
+		                                        Unique Visitors
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-pie-graph"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                    </div>							
+							<!-- /.row -->
+							<!-- Small boxes (Stat box) -->
+							<div class="row">
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-blue">
+		                                <div class="inner">
+		                                    <h3>
+		                                        230
+		                                    </h3>
+		                                    <p>
+		                                        Sales
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-ios7-cart-outline"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-purple">
+		                                <div class="inner">
+		                                    <h3>
+		                                        80<sup style="font-size: 20px">%</sup>
+		                                    </h3>
+		                                    <p>
+		                                        Conversion Rate
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-ios7-briefcase-outline"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-teal">
+		                                <div class="inner">
+		                                    <h3>
+		                                        14
+		                                    </h3>
+		                                    <p>
+		                                        Notofications
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-ios7-alarm-outline"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                        <div class="col-lg-3 col-xs-6">
+		                            <!-- small box -->
+		                            <div class="small-box bg-maroon">
+		                                <div class="inner">
+		                                    <h3>
+		                                        160
+		                                    </h3>
+		                                    <p>
+		                                        Products
+		                                    </p>
+		                                </div>
+		                                <div class="icon">
+		                                    <i class="ion ion-ios7-pricetag-outline"></i>
+		                                </div>
+		                                <a href="#" class="small-box-footer">
+		                                    More info <i class="fa fa-arrow-circle-right"></i>
+		                                </a>
+		                            </div>
+		                        </div><!-- ./col -->
+		                    </div>
+							<!-- /.row -->
+
+
+					      </div>
+					    </div>
+					  </div>
+					  
+					  <div class="panel panel-default">
+					    <div id="collapseTwo" class="panel-collapse collapse">
+					      <div id="panel2_content" class="panel-body">
+
+							<h4 class="page-header">
+		                        Solid Boxes
+		                        <small>We use the base class .box and .box-solid to create solid boxes that look like this.</small>
+		                    </h4>
+							<!-- Solid boxes -->
+							<div class="row">
+		                        <div class="col-md-4">
+		                            <!-- Default box -->
+		                            <div class="box box-solid">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Default Solid Box</h3>
+		                                    <div class="box-tools pull-right">
+		                                        <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+		                                        <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+		                                    </div>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		
+		                        <div class="col-md-4">
+		                            <!-- Primary box -->
+		                            <div class="box box-solid box-primary">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Primary Solid Box</h3>
+		                                    <div class="box-tools pull-right">
+		                                        <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+		                                        <button class="btn btn-primary btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+		                                    </div>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.box-primary</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		
+		                        <div class="col-md-4">
+		                            <!-- Info box -->
+		                            <div class="box box-solid box-info">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Info Solid Box</h3>
+		                                    <div class="box-tools pull-right">
+		                                        <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+		                                        <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+		                                    </div>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.box-info</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		                    </div>
+		                    <!-- /.row -->
+
+					      </div>
+					    </div>
+					  </div>
+					  
+					  <div class="panel panel-default">
+					    <div id="collapseThree" class="panel-collapse collapse">
+					      <div id="panel3_content" class="panel-body">
+
+							<h4 class="page-header">
+		                        Tiles
+		                        <small>To create a tile we create a solid box and a <code>.bg-*</code> class ( * being the name of the color) to the box.</small>
+		                    </h4>
+							<!-- Solid boxes -->
+							<div class="row">
+		                        <div class="col-md-4">
+		                            <!-- Navy tile -->
+		                            <div class="box box-solid bg-navy">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Navy Tile</h3>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.bg-navy</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		
+		                        <div class="col-md-4">
+		                            <!-- Primary tile -->
+		                            <div class="box box-solid bg-light-blue">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Primary Tile</h3>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.bg-light-blue</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		
+		                        <div class="col-md-4">
+		                            <!-- Info box -->
+		                            <div class="box box-solid bg-aqua">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Info Tile</h3>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.bg-aqua</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		                    </div>
+		                    <!-- /.row -->
+		                    
+		                    <div class="row">
+		                        <div class="col-md-4">
+		                            <!-- Danger box -->
+		                            <div class="box box-solid bg-red">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Danger Tile</h3>
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.bg-red</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		
+		                        <div class="col-md-4">
+		                            <!-- Success box -->
+		                            <div class="box box-solid bg-green">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Success Tile</h3>                                    
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.bg-green</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		
+		                        <div class="col-md-4">
+		                            <!-- Warning box -->
+		                            <div class="box box-solid bg-yellow">
+		                                <div class="box-header">
+		                                    <h3 class="box-title">Warning Tile</h3>                                    
+		                                </div>
+		                                <div class="box-body">
+		                                    Box class: <code>.box.box-solid.bg-yellow</code>
+		                                    <p>
+		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+		                                    </p>
+		                                </div><!-- /.box-body -->
+		                            </div><!-- /.box -->
+		                        </div><!-- /.col -->
+		                    </div>
+		                    <!-- /.row -->                    
+
+
+
+
+
+
+					      </div>
+					    </div>
+					  </div>
+					  
+					  <div class="panel panel-default">
+					    <div id="collapseFour" class="panel-collapse collapse">
+					      <div id="panel4_content" class="panel-body">
+					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      
+					      </div>
+					    </div>
+					  </div>
+					  
+					  <div class="panel panel-default">
+					    <div id="collapseFive" class="panel-collapse collapse">
+					      <div id="panel5_content" class="panel-body">
+					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      
+					      </div>
+					    </div>
+					  </div>
+					  
+					  <div class="panel panel-default">
+					    <div id="collapseSix" class="panel-collapse collapse">
+					      <div id="panel6_content" class="panel-body">
+					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      
+					      </div>
+					    </div>
+					  </div>
+
+					  <div class="panel panel-default">
+					    <div id="collapseSeven" class="panel-collapse collapse">
+					      <div id="panel6_content" class="panel-body">
+					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      
+					      </div>
+					    </div>
+					  </div>
+					  
+					</div> <!--end class="panel-group" id="accordion"-->
+
+
+
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+        <!-- add new calendar event modal -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Morris.js charts -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <!-- Sparkline -->
+        <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+        <!-- jvectormap -->
+        <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+        <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+        <!-- fullCalendar -->
+        <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+        <!-- daterangepicker -->
+        <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        <!-- iCheck -->
+        <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+        
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>     
+        
+        <!-- AdminLTE for demo purposes -->
+        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
+
+	
+	    <!-- Place this asynchronous JavaScript just before your </body> tag 
+	     see https://developers.google.com/+/web/signin/add-button-javascript for details-->
+	    <!--script type="text/javascript">
+	      (function() {
+	       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	       po.src = 'https://apis.google.com/js/client:plusone.js';
+	       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	     })();
+	    </script-->
+	    
+	    
+		<!--meta name="google-signin-clientid" content="CLIENT_ID" /-->
+		<meta name="google-signin-clientid" content="231344210046.apps.googleusercontent.com" />
+		<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email" />
+		<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity" />
+		<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+		<meta name="google-signin-callback" content="signinCallback" />
+		<script type="text/javascript">
+		(function() {
+		  var po = document.createElement('script');
+		  po.type = 'text/javascript'; po.async = true;
+		  po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+		  var s = document.getElementsByTagName('script')[0];
+		  s.parentNode.insertBefore(po, s);
+		})();
+		
+		/* Executed when the APIs finish loading */
+		function render() {
+		
+		  // Additional params
+		  var additionalParams = {
+		    'theme' : 'dark'
+		  };
+		
+		  gapi.signin.render('myButton', additionalParams);
+		}
+		
+		function signinCallback(authResult) {
+		  if (authResult['status']['signed_in']) {
+		    // Update the app to reflect a signed in user
+		    // Hide the sign-in button now that the user is authorized, for example:
+		    document.getElementById('gSignInWrapper').setAttribute('style', 'display: none');
+		    document.getElementById('loggedinNavMenus').setAttribute('style', 'display: ');		    		    		    
+
+          	makeApiCall();
+
+		  } else {
+		    // Update the app to reflect a signed out user
+		    // Possible error values:
+		    //   "user_signed_out" - User is signed-out
+		    //   "access_denied" - User denied access to your app
+		    //   "immediate_failed" - Could not automatically log in the user
+		    console.log('Sign-in state: ' + authResult['error']);
+		  }
+		}
+		
+		
+		// Load the API and make an API call.  Display the results on the screen.
+		function makeApiCall() {
+		// Step 4: Load the Google+ API
+		gapi.client.load('plus', 'v1', function() {
+		  // Step 5: Assemble the API request
+		  var request = gapi.client.plus.people.get({
+		    'userId': 'me'
+		  });
+		  // Step 6: Execute the API request
+		  request.execute(function(resp) {
+		    /*var heading = document.createElement('h4');
+		    var image = document.createElement('img');
+		    image.src = resp.image.url;
+		    heading.appendChild(image);
+		    heading.appendChild(document.createTextNode(resp.displayName));
+		    document.getElementById('content').appendChild(heading); */		    
+		    document.getElementById('user_name').innerHTML = resp.displayName;
+		    document.getElementById('user_image').src = resp.image.url;
+		    document.getElementById('user_image1').src = resp.image.url;
+		    document.getElementById('user_info').innerHTML = resp.displayName;
+		    document.getElementById('user_profile').href = resp.url;
+		    document.getElementById('user_email').innerHTML = resp.emails[0].value;
+		    document.getElementById('welcome_text').innerHTML = 'Welcome, ' + resp.name.givenName + '!';
+			/*console.log('ID: ' + resp.id);
+			console.log('Display Name: ' + resp.displayName);
+			console.log('Image URL: ' + resp.image.url);
+			console.log('Profile URL: ' + resp.url);*/
+
+		  });
+		});
+		}
+				
+		</script>
+		
+		<!-- In the callback, you would hide the gSignInWrapper element on a
+		successful sign in -->
+		<!--div id="gSignInWrapper">
+		  <div id="myButton" class="btn btn-warning btn-lg">
+		    E4Ders, <b>LOGIN</b> here!
+		  </div>
+		</div-->	    
+	    
+
+    </body>
+       
+    
+</html>
+{% endautoescape %}

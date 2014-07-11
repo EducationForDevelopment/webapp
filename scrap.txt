@@ -1,0 +1,290 @@
+
+
+
+<div id="myCarousel" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item">
+      <img src="/assets/example/bg_suburb.jpg" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Bootstrap 3 Carousel Layout</h1>
+          <pthis is="" an="" example="" layout="" with="" carousel="" that="" uses="" the="" bootstrap="" 3="" styles.<="" small=""><p></p>
+          <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Learn More</a>
+        </p></pthis></div>
+      </div>
+    </div>
+    <div class="item active">
+      <img src="http://lorempixel.com/1500/600/abstract/1" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Changes to the Grid</h1>
+          <p>Bootstrap 3 still features a 12-column grid, but many of the CSS class names have completely changed.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://placehold.it/1500X500" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Percentage-based sizing</h1>
+          <p>With "mobile-first" there is now only one percentage-based grid.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
+
+
+
+
+
+
+
+_______________________________________________
+
+DON"T FORGET THE CORRESPONDING CSS!!!!!!!
+
+<div class="navbar-wrapper">
+  <div class="container">
+    <div class="navbar navbar-inverse navbar-static-top">
+
+        <div class="navbar-header">
+	    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </a>
+        <a class="navbar-brand" href="#">Bootstrap 3</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="http://www.bootply.com" target="ext">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+    </div>
+  </div><!-- /container -->
+</div><!-- /navbar wrapper -->
+
+
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="/assets/example/bg_suburb.jpg" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Bootstrap 3 Carousel Layout</h1>
+          <pthis is="" an="" example="" layout="" with="" carousel="" that="" uses="" the="" bootstrap="" 3="" styles.<="" small=""><p></p>
+          <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Learn More</a>
+        </p></pthis></div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://lorempixel.com/1500/600/abstract/1" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Changes to the Grid</h1>
+          <p>Bootstrap 3 still features a 12-column grid, but many of the CSS class names have completely changed.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="http://placehold.it/1500X500" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Percentage-based sizing</h1>
+          <p>With "mobile-first" there is now only one percentage-based grid.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
+<!-- /.carousel -->
+
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <img class="img-circle" src="http://placehold.it/140x140">
+      <h2>Mobile-first</h2>
+      <p>Tablets, phones, laptops. The new 3 promises to be mobile friendly from the start.</p>
+      <p><a class="btn btn-default" href="#">View details »</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+      <img class="img-circle" src="http://placehold.it/140x140">
+      <h2>One Fluid Grid</h2>
+      <p>There is now just one percentage-based grid for Bootstrap 3. Customize for fixed widths.</p>
+      <p><a class="btn btn-default" href="#">View details »</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+      <img class="img-circle" src="http://placehold.it/140x140">
+      <h2>LESS is More</h2>
+      <p>Improved support for mixins make the new Bootstrap 3 easier to customize.</p>
+      <p><a class="btn btn-default" href="#">View details »</a></p>
+    </div>
+  </div><!-- /.row -->
+
+
+  <!-- START THE FEATURETTES -->
+
+  <hr class="featurette-divider">
+
+  <div class="featurette">
+    <img class="featurette-image img-circle pull-right" src="http://placehold.it/512">
+    <h2 class="featurette-heading">Responsive Design. <span class="text-muted">It'll blow your mind.</span></h2>
+    <p class="lead">In simple terms, a responsive web design figures out what resolution of device it's being served on. Flexible grids then size correctly to fit the screen.</p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="featurette">
+    <img class="featurette-image img-circle pull-left" src="http://placehold.it/512">
+    <h2 class="featurette-heading">Smaller Footprint. <span class="text-muted">Lightweight.</span></h2>
+    <p class="lead">The new Bootstrap 3 promises to be a smaller build. The separate Bootstrap base and responsive.css files have now been merged into one. There is no more fixed grid, only fluid.</p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="featurette">
+    <img class="featurette-image img-circle pull-right" src="http://placehold.it/512">
+    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Flatness.</span></h2>
+    <p class="lead">A big design trend for 2013 is "flat" design. Gone are the days of excessive gradients and shadows. Designers are producing cleaner flat designs, and Bootstrap 3 takes advantage of this minimalist trend.</p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- /END THE FEATURETTES -->
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>This Bootstrap layout is compliments of Bootply. · <a href="http://www.bootply.com/62603">Edit on Bootply.com</a></p>
+  </footer>
+
+</div><!-- /.container -->
+
+
+_________________________________________________
+
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+              <img data-src="" alt="First slide" src="">
+        </div>
+        <div class="item">
+          <img data-src="" alt="Second slide" src="">
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+">
+        </div>
+      </div>
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+__________________________________
+
+<div id="sites-canvas-main" class="sites-canvas-main">
+<div id="sites-canvas-main-content">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sites-layout-name-three-column-hf sites-layout-vbox"><div class="sites-layout-tile sites-tile-name-header"><div dir="ltr"><h2 style="border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6"><a name="TOC-Diverse-courses-catalog-from-top-Universities"></a><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><div style="font-size:21px"><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000"><div style="display:inline!important"><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000"><div style="display:inline!important"></div></font></b></div></font></b></div><div><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000"><div style="display:inline!important"><b style="line-height:1.6;color:rgb(51,51,51);border:0px;margin:0px;padding:0px"><font color="#000000" size="5"><div style="display:inline!important">Diverse courses catalog from top Universities</div></font></b></div></font></b></div></font></b></h2><p style="border:0px;margin:0px 0px 15px;padding:0px;font-size:13.333333969116211px;line-height:20px">E4D provides an “academic interface” for the so-called MOOCs (massive open online courses), offered through web-based services such as edX (www.edx.org), Coursera (www.coursera.org), and Udacity (www.udacity.com). Participants choose from a vast variety of courses spread across many disciplines, taught by distinguished professors from leading international universities. E4D internet facilities are available at all hours of the day, for participants to ingest course lectures and materials at their own individual pace. Moreover, we aim to create environments conducive to learning, equipped with basic amenities like 24×7 water and electricity.</p><p style="border:0px;margin:0px 0px 15px;padding:0px;font-size:13.333333969116211px;line-height:20px"><br></p><p style="border:0px;margin:0px 0px 15px;padding:0px;line-height:20px"><font size="5"><b>Laboratory Coursework</b></font></p><p style="border:0px;margin:0px 0px 15px;padding:0px;line-height:20px"><span style="font-size:13.333333969116211px">E4D workshop facilities, laboratory resources and technical staff enable participants to complete basic laboratory courses in biology/biotechnology, chemistry, computer science, electronics, mechanical engineering, and more!</span></p><font size="3"><br style="font-family:georgia,serif"></font></div></div><table cellspacing="0" class="sites-layout-hbox"><tbody><tr><td class="sites-layout-tile sites-tile-name-content-1"><div dir="ltr"><h2 style="border:0px;margin:0px;padding:0px;font-family:Droid Sans,Arial,Helvetica,sans-serif;line-height:1.6;font-size:21px"><a name="TOC-Flexible-Scheduling"></a><font color="#000000">Flexible Scheduling</font></h2><font color="#000000"><br></font><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000">E4D facilities are open 24 hours/day, 7 days/week, to accommodate constraints on participants’ schedules due to real-world commitments (e.g., employment, family care, health issues). E4D participants can arrange to learn on their own preferred schedules. (Yes, it is possible to carry out university-level coursework and also work a full-time job!)</font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><span style="font-size:13.333333969116211px;line-height:20px"><font color="#000000"><br></font></span></div><div><br></div><div><font color="#000000" size="5"><span style="line-height:20px"><b>Accessible Facilities</b></span></font></div><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px">E4D makes every effort to minimize constraints on participation posed by physical disabilities and sensory impairments. Special arrangements can be made to accommodate participants with visual and hearing impairments, as well as those with mobility challenges.</span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><br></div><div><br></div><div><font size="5"><span style="line-height:20px"><b>Industry exposure and Internships</b></span></font></div><div><b style="border:0px;margin:0px;padding:0px"><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div></b></div><div><br></div><div><span style="font-size:13.333333969116211px;line-height:20px">Through internship and research opportunities, E4D aims to provide all participants with early and frequent exposure to their chosen industries and professional fields. Participants are strongly encouraged to extend their practical work experience by performing internships with local and remote companies and universities, particularly during periods when little or no coursework is undertaken. Substantial E4D resources are committed to facilitate connection of participants with suitable internship opportunities. Participants are also be encouraged to make industry contacts independently, both to arrange internships and to connect their contacts with E4D personnel, thereby facilitating future internship opportunities for other E4D participants.</span></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div></div></td><td class="sites-layout-tile sites-tile-name-content-2"><div dir="ltr"><font size="5"><b>Free of Charge !</b></font><div><div><font color="#000000"><span style="font-size:13.333333969116211px;line-height:20px"><br></span></font></div><div><font color="#000000"><span style="font-size:13.333333969116211px;line-height:20px">Participants are not charged tuition for coursework completed through E4D. Equipment, facilities, and required funds must all be secured through government and community support. Ultimately, national and state governments bear the great responsibility of extending public access to higher education. We expect they will recognize the E4D&nbsp;</span><span style="font-size:13.333333969116211px;line-height:20px">strategy as a more sensible investment than establishing thousands of new faculty-based colleges.</span><span style="font-size:13.333333969116211px;line-height:20px">&nbsp;</span></font></div><div><div style="display:block;text-align:left"><br></div></div></div><div style="display:block;text-align:left"><br></div><div style="display:block;text-align:left"><br></div><div style="display:block;text-align:left"><font size="5"><b>Academic and Career Planning</b></font></div><div style="display:block;text-align:left"><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px">E4D counsellors meet with participants several times upon initial enrollment, and then at 2-3 month intervals, to help participants lay out a goal-oriented academic plan and to select coursework and internships appropriately. At each planning session, participants have the option to adjust or refine their academic plans according to their updated career objectives.</span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><br></div><div><font size="5"><span style="line-height:20px"><b>Innovation Hubs and Experiential learning</b></span></font></div><div><font size="5"><span style="line-height:20px"><b><br></b></span></font></div><div><font size="5"><span style="line-height:20px"><b><br></b></span></font></div><div><span style="font-size:13.333333969116211px;line-height:20px">At the core of each E4D facility is a workshop space dedicated to&nbsp;</span><i style="border:0px;margin:0px;padding:0px;font-size:13.333333969116211px;line-height:20px">experiential learning and innovative research</i><span style="font-size:13.333333969116211px;line-height:20px">, an “Innovation Hub”. E4D participants have 24×7 access to common construction tools, basic electronics equipment, and a vast collection of raw/recycled materials, restocked through bulk purchase, materials recycling, and parts harvesting from discarded and disused equipment. Work conducted by E4D participants at Innovation Hubs Centre facilities is showcased intermittently at “TechMeet” events, organized in close collaboration with the participants themselves. Participants interact with representatives from corporations, universities, and other prospective employers, to facilitate arrangement of internships, and ultimately, employment.</span></div></div></div></td><td class="sites-layout-tile sites-tile-name-content-3"><div dir="ltr"><font size="5"><b>Life Skills</b></font><br><font color="#000000" size="2"><br></font><span style="color:rgb(0,0,0);font-size:small">Participants will be able to acquire life skills such as Digital literacy, English language literacy, Self-defense, Women empowerment &nbsp;through periodic workshops arranged in collaboration with reputed organizations.</span><font color="#000000" size="2"><br></font><div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><font color="#000000" size="2"><br></font></div><div><br></div><div><br></div><div><font size="5"><b>Certificates and Transcripts</b></font></div><div><b style="border:0px;margin:0px;padding:0px"><font color="#000000"><br></font></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px">Certificates awarded by EDx/Coursera/Udacity and similar online programs are verified by E4D and recorded in a cumulative record. Thereafter, upon request of the participant, E4D will issue a formal, independently verified “course transcript”.</span></b></div></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><b style="border:0px;margin:0px;padding:0px"><span style="font-size:13.333333969116211px;font-weight:normal;line-height:20px"><br></span></b></div><div><br></div><div><font size="5"><b>Unrestricted transfer and Path jumping</b></font></div><div><font size="5"><b><br></b></font></div><div><span style="font-size:13.333333969116211px;line-height:20px">Participants can arrange to access facilities at any E4D location, irrespective of their initial enrollment location. College/university students are encouraged to participate. E4D can supplement study at conventional institutions, or it can function as an independent alternative. Moreover, participants are never “locked in” to a particular area of study, but rather have the opportunity to modify their academic plan based on practical experience with courses and internships.</span></div></div></td></tr></tbody></table><div class="sites-layout-tile sites-tile-name-footer"><div dir="ltr"><div style="text-align:center"><span style="font-size:x-large;font-weight:bold">Goal-oriented, Practical education</span></div><div style="text-align:left"><span style="font-size:13.333333969116211px;line-height:20px">Individualized course plans are selected and refined by participants themselves during regular academic counseling sessions.</span></div><div>
+<div style="text-align:right">
+<br><br><hr size="2" style="margin-left:auto;margin-right:auto" width="99%">
+<a href="http://home.e4d.in/config/facebook.png?attredirects=0">
+</a>
+<div>
+<div>&nbsp;
+
+<a href="https://www.facebook.com/edu4development" target="_blank"><img alt="facebook" height="32" src="http://home.e4d.in/_/rsrc/1379102445353/communioncorp_facebook.png?height=32&amp;width=32" style="margin-right:15px" width="32"></a>
+<a href="http://home.e4d.in/blog" target="_blank"><img alt="twitter" height="32" src="http://home.e4d.in/_/rsrc/1379102445353/communioncorp_twitter.png?height=32&amp;width=32" style="margin-right:15px" width="32"></a>
+<br>
+</div>
+</div>
+</div>
+</div>
+<hr size="2" style="margin-left:auto;margin-right:auto" width="99%">
+<br><div></div><br></div></div></div>
+</div>
+</div>
+
+
+
+<div class="textwidget" data-twttr-id="twttr-sandbox-0"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-timeline twitter-timeline-rendered" title="Twitter Timeline" height="400" style="border: none; max-width: 100%; min-width: 180px; width: 307px;"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+
+
+https://twitter.com/abhijit_e4d/lists/e4d-banjarapalya
+
+http://hlc.org.in/

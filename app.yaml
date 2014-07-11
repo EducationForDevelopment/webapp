@@ -1,0 +1,79 @@
+application: e4dstart
+version: 1
+runtime: python27
+#runtime: php
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /index\.html
+  script: e4dstart.application
+
+- url: /sign
+  script: e4dstart.application
+
+#- url: /index\.html
+#  static_files: index.html
+#  upload: index\.html
+
+# Serve php scripts.
+#- url: /(.+\.php)$
+#  script: \1
+
+#- url: /Star_Rating_demo/
+#  static_dir: Star_Rating_demo
+#  application_readable: true
+
+#- url: /(.*\.(htm|html|css|js))$
+#  static_files: \1
+#  upload: /.*\.(htm|html|css|js)$
+#  application_readable: true
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+- url: /img
+  static_dir: img
+
+- url: /fonts
+  static_dir: fonts
+
+#- url: /ajax
+#  static_dir: ajax
+
+- url: /pages/
+  static_dir: pages
+
+#- url: /.*
+#  script: e4dstart.application
+
+- url: /
+  script: e4dstart.application
+
+
+
+
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+
+
+######################
+#handlers -- A list of URL patterns and descriptions of how they should be handled.
+#App Engine can handle URLs by executing application code, or by serving static files uploaded with the code,
+#such as images, CSS or JavaScript.
+#Patterns are evaluated in the order they appear in the app.yaml, from top to bottom.
+#The first mapping whose pattern matches the URL is the one used to handle the request.
+#There are two kinds of handlers: script handlers, and static file handlers.
+#A script handler runs a Python script in your application to determine the response for the given URL.
+#A static file handler returns the contents of a file, such as an image, as the response.

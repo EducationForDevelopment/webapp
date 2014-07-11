@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+
+    <title>E4D.start.</title>
+
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+      blockquote {
+        margin-bottom: 10px;
+        border-left-color: #bbb;
+      }
+      form {
+        margin-top: 10px;
+      }
+      .form-signin input[type="text"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      .row {
+        margin-left: 0px;
+        margin-top: 10px;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  
+  <body>
+  
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <!--button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar">test1</span>
+            <span class="icon-bar">test2</span>
+            <span class="icon-bar">test3</span>
+          </button-->
+          <!--a class="brand" href="#">App Engine Guestbook</a-->
+
+          <a class="brand" href="#"> <b style="font-size:45px; color:white"> {{ url_linktext1 }} </b> </a> 
+
+		  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">
+		    simple
+		  </button>
+		  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+		     collapsible
+		  </button>
+		  <button type="button" class="btn btn-danger" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+		    simple 
+		  </button>
+		  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
+		     collapsible
+		  </button>
+		  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo4">
+		    simple 
+		  </button>
+
+          
+          <div class="nav-collapse collapse in pull-right">
+          	<b style="font-size:20px; color:blue"> {{ url_linktext2 }} </b>
+            <a href="{{ url|safe }}" class="btn"> <b style="font-size:35px; color:white"> {{ url_linktext }} </b> </a> 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!--span>
+
+	BASICS
+	http://mail.e4d.in
+	http://calendar.e4d.in	
+	http://docs.e4d.in
+    http://trello.com/
+    http://twitter.com
+
+	ENGLISH+COMPUTERS
+	http://mooec.com/
+	http://www.gcflearnfree.org/
+	http://www.typingclub.com/login.html	[http://bit.ly/1lwDE26]
+
+
+	INDICES
+	rationale: many services index MOOCs and provide user ratings, currently unclear which offer preferable interface or more useful info.  here we provide E4D users access to a range of such sites, with goal of evaluating user experiences and refining choices constructively.
+	todo: enable voting/feedback on each site
+    https://degreed.com/
+    http://www.coursetalk.com/		[http://www.coursetalk.com/login/google-oauth2/]
+    http://knollop.com/				[http://knollop.com/auth/start/google-oauth2]
+	http://www.topfreeclasses.com/	[http://www.topfreeclasses.com/auth/google?return=%2Flogin]
+	http://www.mooctivity.com/		[http://www.mooctivity.com/accounts/google/login/?process=login]
+    https://www.class-central.com/
+    http://www.mooc-list.com/
+    http://www.worldscienceu.com/
+	http://openstudy.com/	
+	http://www.learningadvisor.com/
+
+    https://gibbon.co/			[https://gibbon.co/login/google-oauth2/]
+	
+
+	PROJECTS
+    https://www.coursolve.org/
+    http://www.techpedia.in/    
+	https://www.khanacademy.org/science/discoveries-projects/
+		https://www.khanacademy.org/science/discoveries-projects/robots/all-about-spout/v/spout-bot-at-santa-rita-elementary-school
+	http://encyclobeamia.solarbotics.net/articles/beam.html
+		http://bestiary.solarbotics.net/
+		http://www.solarbotics.net/library.html
+	http://www.instructables.com/
+	https://learn.adafruit.com/	
+	http://makezine.com/
+	http://hackaday.com/
+	https://class.stanford.edu/courses/Engineering/Haptics/Fall2013/about	
+	https://www.coursera.org/course/conrob
+
+	
+
+	NEWS/INFO/DISCUSSION
+    http://moocs.com/
+    https://www.edsurge.com/
+    
+
+	CONTENT
+	http://www.khanacademy.org/	[https://www.khanacademy.org/signup/google]
+	http://www.codecademy.com/	[http://www.codecademy.com/auth/google_oauth2?signin=true]	
+	http://www.codeschool.com/	[https://www.codeschool.com/auth/gplus]
+	http://www.edx.org/
+	http://www.coursera.org/
+	http://www.udacity.com/
+	http://alison.com/			[http://alison.com/?origin=google_login#]
+	http://www.canvas.net/
+	http://www.futurelearn.com/
+	http://iversity.org/
+	http://novoed.com/
+	http://www.open2study.com/
+	
+	
+	
+	note: don't show apps/services links unless user is logged in with e4d.in emailID
+	questions:  how to automate "sign in with google+" for specific sites (or all sites where it's possible)?
+		- for google-loginable sites, possible to include login info in link URL??
+
+
+    </span-->
+    
+    
+    
+    
+    
+    <!-- These are independent collapsible divs -->
+	<div id="demo" class="collapse in">		
+	</div>
+	<div id="demo1" class="collapse">			
+	</div>
+	<div id="demo2" class="collapse">	
+	</div>
+	<div id="demo3" class="collapse">			
+	</div>
+	<div id="demo4" class="collapse">						
+	</div>
+
+
+    <!-- These are inter-dependent collapsible divs (expanding one collapses the rest) -->
+	<div class="panel-group" id="accordion">
+	  <div class="panel panel-default">
+	    <!--div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+	          Collapsible Group Item #1
+	        </a>
+	      </h4>
+	    </div-->
+	    <div id="collapseOne" class="panel-collapse collapse in">
+	      <div class="panel-body">
+	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      </div>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <!--div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+	          Collapsible Group Item #2
+	        </a>
+	      </h4>
+	    </div-->
+	    <div id="collapseTwo" class="panel-collapse collapse">
+	      <div class="panel-body">
+	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      </div>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <!--div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+	          Collapsible Group Item #3
+	        </a>
+	      </h4>
+	    </div-->
+	    <div id="collapseThree" class="panel-collapse collapse">
+	      <div class="panel-body">
+	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon 	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+    <!--div class="container">	
+      {% for greeting in greetings %}
+      <div class="row">
+        {% if greeting.author %}
+          <b>{{ greeting.author.nickname() }}</b> wrote:
+        {% else %}
+         An anonymous person wrote:
+        {% endif %}
+        <blockquote>{{ greeting.content }}</blockquote>
+      </div>
+      {% endfor %}
+      	
+      <form action="/sign" method="post">
+        <div><textarea name="content" class="input-block-level" rows="3"></textarea></div>
+        <div><input type="submit" class="btn btn-large btn-primary" value="Sign Guestbook"></div>
+      </form>
+    </div-->	    
+
+
+
+  </body>
+</html>
+{% endautoescape %}

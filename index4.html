@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>E4D.start()</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Morris chart -->
+        <link href="css/morris/morris.css" rel="stylesheet" type="text/css" />
+        <!-- jvectormap -->
+        <link href="css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- fullCalendar -->
+        <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+		<style type="text/css">
+			/* custom inclusion of right, left and below tabs; see http://www.bootply.com/74926 AND
+			http://stackoverflow.com/questions/18432577/stacked-tabs-in-bootstrap-3 */
+			.tabs-below > .nav-tabs,
+			.tabs-right > .nav-tabs,
+			.tabs-left > .nav-tabs {
+			  border-bottom: 0;
+			}
+			.tab-content > .tab-pane,
+			.pill-content > .pill-pane {
+			  display: none;
+			}
+			.tab-content > .active,
+			.pill-content > .active {
+			  display: block;
+			}
+			.tabs-below > .nav-tabs {
+			  border-top: 1px solid #ddd;
+			}
+			.tabs-below > .nav-tabs > li {
+			  margin-top: -1px;
+			  margin-bottom: 0;
+			}
+			.tabs-below > .nav-tabs > li > a {
+			  -webkit-border-radius: 0 0 4px 4px;
+			     -moz-border-radius: 0 0 4px 4px;
+			          border-radius: 0 0 4px 4px;
+			}
+			.tabs-below > .nav-tabs > li > a:hover,
+			.tabs-below > .nav-tabs > li > a:focus {
+			  border-top-color: #ddd;
+			  border-bottom-color: transparent;
+			}
+			.tabs-below > .nav-tabs > .active > a,
+			.tabs-below > .nav-tabs > .active > a:hover,
+			.tabs-below > .nav-tabs > .active > a:focus {
+			  border-color: transparent #ddd #ddd #ddd;
+			}
+			.tabs-left > .nav-tabs > li,
+			.tabs-right > .nav-tabs > li {
+			  float: none;
+			}
+			.tabs-left > .nav-tabs > li > a,
+			.tabs-right > .nav-tabs > li > a {
+			  min-width: 74px;
+			  margin-right: 0;
+			  margin-bottom: 3px;
+			}
+			.tabs-left > .nav-tabs {
+			  float: left;
+			  margin-right: 19px;
+			  border-right: 1px solid #ddd;
+			}
+			.tabs-left > .nav-tabs > li > a {
+			  margin-right: -1px;
+			  -webkit-border-radius: 4px 0 0 4px;
+			     -moz-border-radius: 4px 0 0 4px;
+			          border-radius: 4px 0 0 4px;
+			}
+			.tabs-left > .nav-tabs > li > a:hover,
+			.tabs-left > .nav-tabs > li > a:focus {
+			  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+			}
+			.tabs-left > .nav-tabs .active > a,
+			.tabs-left > .nav-tabs .active > a:hover,
+			.tabs-left > .nav-tabs .active > a:focus {
+			  border-color: #ddd transparent #ddd #ddd;
+			  *border-right-color: #ffffff;
+			}
+			.tabs-right > .nav-tabs {
+			  float: right;
+			  margin-left: 19px;
+			  border-left: 1px solid #ddd;
+			}
+			.tabs-right > .nav-tabs > li > a {
+			  margin-left: -1px;
+			  -webkit-border-radius: 0 4px 4px 0;
+			     -moz-border-radius: 0 4px 4px 0;
+			          border-radius: 0 4px 4px 0;
+			}
+			.tabs-right > .nav-tabs > li > a:hover,
+			.tabs-right > .nav-tabs > li > a:focus {
+			  border-color: #eeeeee #eeeeee #eeeeee #dddddd;
+			}
+			.tabs-right > .nav-tabs .active > a,
+			.tabs-right > .nav-tabs .active > a:hover,
+			.tabs-right > .nav-tabs .active > a:focus {
+			  border-color: #ddd #ddd #ddd transparent;
+			  *border-left-color: #ffffff;
+			}
+		</style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-blue">
+
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="/" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                {E4D}
+				<img src="img/E4Dicon_flip_100px.png" class="icon" alt="E4Dlogo"/>
+            </a>
+
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+
+				<div id="gSignInWrapper" class="navbar-right">
+				  <div id="myButton" class="btn btn-warning btn-lg">
+				    E4Ders, <b>LOGIN</b> here!
+				  </div>
+				</div>
+
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div id="loggedinNavMenus" class="navbar-right" style="display:none">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                <span class="label label-success">X</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have X messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar04.png" class="img-circle" alt="User Image"/>
+                                                </div>
+                                                <h4>
+                                                    Sender1
+                                                    <small><i class="fa fa-clock-o"></i> xx mins</small>
+                                                </h4>
+                                                <p>Message/Subject</p>
+                                            </a>
+                                        </li><!-- end message -->
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/rowlf.jpeg" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Sender2
+                                                    <small><i class="fa fa-clock-o"></i> xx hours</small>
+                                                </h4>
+                                                <p>Message/Subject</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">[LINK]See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-warning"></i>
+                                <span class="label label-warning">Y</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have Y notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-people info"></i> e.g., Ammoor manager gone rogue!
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">[LINK] View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                                <span class="label label-danger">Z</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">e.g., You have Z tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Task#1
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Task#2
+                                                    <small class="pull-right">40%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-green" style="width: 75%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">75% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span id="user_name">Joe Mhama <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img id="user_image" src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p>
+                                        <b id="user_info"> Joe Mhama - Web Surfer </b>
+                                        <small id="user_email"> Member since 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!--li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing1</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing2</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">thing3</a>
+                                    </div>
+                                </li-->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a id="user_profile" href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <!--a href="{{ url|safe }}" class="btn btn-default btn-flat"> {{ url_linktext }} </a-->
+										<!-- google-account-logout-and-redirect: http://stackoverflow.com/questions/4202161/google-account-logout-and-redirect/14831349#14831349 -->
+                                        <a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://e4d.in" class="btn btn-danger btn-lg"> <b>LOGOUT</b> </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img id="user_image1" src="img/Rani_of_jhansi.jpg" class="img-circle" alt="User Image" />
+                        </div>
+                        <div id="welcome_text" class="pull-left info">
+                            <p> {{ url_linktext2 }} </p>
+
+                            <!--a href="#"><i class="fa fa-circle text-success"></i> Online</a-->
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <!--form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form-->
+                    <!-- /.search form -->
+
+
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+            		    <div class="box">
+            				<div class="box-body">
+            				  <ul class="nav nav-pills nav-stacked" id="myTabs">
+            					<li class="active">
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            							<i class="fa fa-home"></i> <big>HOME</big>
+            						</a>
+            					</li>
+
+            					<li class="treeview">
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            							<i class="glyphicon glyphicon-bookmark"></i> <big>.STUDY.</big> <i class="fa fa-angle-left pull-right"></i>
+            						</a>
+                                    <ul class="treeview-menu">
+                                        <li class="active">
+                                        	<a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwoA"><!--i class="fa fa-angle-double-right"></i--> » &nbsp;<small>English & Computer Basics</small></a>
+                                        </li>
+                                        <li>
+                                        	<a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwoB"><!--i class="fa fa-angle-double-right"></i--> » &nbsp;<small>University Courses & Tutorials</small></a>
+                                        </li>
+            						</ul>
+            					</li>
+
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+            							<i class="fa fa-wrench"></i> <big>.CREATE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+            							<i class="fa fa-bullhorn"></i> <big>.COMMUNICATE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+            							<i class="fa fa-calendar"></i> <big>.ORGANIZE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+            							<i class="glyphicon glyphicon-road"></i> <big>.EXPLORE.</big>
+            						</a>
+            					</li>
+            					<li>
+            						<a class="btn btn-block btn-social btn-default " data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+            							<i class="fa fa-meh-o"></i> <big> Got Doubts? </big>
+            						</a>
+            					</li>
+            				  </ul>
+            				</div>
+            		    </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="btn-group-vertical">
+                        	<button class="btn btn-default btn-lg disabled"> ADMIN</button>
+                        	<button class="btn btn-default btn-lg disabled"> BUTTONS</button>
+                        	<button class="btn btn-default btn-lg disabled"> HERE</button>
+                        	<!--button class="btn btn-default btn-lg"> COMMUNICATE</button>
+                        	<button class="btn btn-default btn-lg"> ORGANIZE</button>
+                        	<button class="btn btn-default btn-lg"> EXPLORE</button>
+                        	<button class="btn btn-default btn-lg"> Got <i>DOUBTS</i>?</button-->
+                        </div>
+
+
+						<!--div class="btn-group-vertical">
+							<button class="btn btn-default btn-lg"> HOME</button>
+							<button class="btn btn-default btn-lg"> STUDY</button>
+							<button class="btn btn-default btn-lg"> CREATE</button>
+							<button class="btn btn-default btn-lg"> COMMUNICATE</button>
+							<button class="btn btn-default btn-lg"> ORGANIZE</button>
+							<button class="btn btn-default btn-lg"> EXPLORE</button>
+							<button class="btn btn-default btn-lg"> Got <i>DOUBTS</i>?</button>
+						</div-->
+
+
+                        <!--li class="active">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <i class="fa fa-tower"></i> <span>HOME</span>
+                            </a>
+                        </li>
+                        <li>
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+					        	<i></i><span> .STUDY. </span> <i class="fa fa-certificate"></i>
+					        </a>
+                        </li-->
+                        <!--li class="treeview">
+                            <a href="#"> <i class="fa fa-bar-chart-o"></i> <span>Charts</span> <i class="fa fa-angle-left pull-right"></i> </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
+                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
+                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
+                            </ul>
+                        </li-->
+
+                        <!--li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <i class="fa fa-wrench"></i> <span>.CREATE.</span> <i>
+                            </a>
+                        </li>
+
+                        <li class="treeview">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <i></i> <span>.COMMUNICATE.</span> <i class="glyphicon glyphicon-bullhorn"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                	<a href="#"><i class="fa fa-angle-double-right"></i> G+, Groups, Twitter, etc.</a>
+                                </li>
+                                <li>
+                                	<a href="pages/mailbox.html"><i class="fa fa-angle-double-right"></i> Mailbox (example only!)</a>
+                                </li>
+							</ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                <i class="fa fa-edit"></i> <span>.ORGANIZE.</span> <i class="fa fa-calendar"></i>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                	<a href="#"><i class="fa fa-angle-double-right"></i> Tasks, gDrive, etc.</a> <i class="fa fa-group"></i><i class="fa fa-comments-o"></i>
+                                </li>
+                                <li>
+                                	<a href="pages/calendar.html"><i class="fa fa-angle-double-right"></i> Calendar (example only!)</a>
+                                </li>
+							</ul>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                <i class="fa fa-calendar"></i> <span>.EXPLORE.</span>
+                                <small class="badge pull-right bg-red">3</small>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                <i class="fa fa-question-sign"></i> <span>Got <i>Doubts</i>?</span> <i class="fa fa-meh-o"></i>
+                            </a>
+                        </li>
+
+                        <li class="treeview disabled">
+                            <a href="#" class="disabled">
+                                <i class="fa fa-folder"></i> <span>::PATIENCE::</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
+                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
+                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
+                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section-->
+                <!-- /.sidebar -->
+            </aside>
+
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <!--section class="content-header">
+                    <h1> Dashboard  <small>Control panel</small> </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section-->
+
+
+                <!-- Main content -->
+                <section id="content" class="content">
+
+
+					<!-- These are inter-dependent collapsible divs (expanding one collapses the rest) -->
+					<div class="panel-group" id="accordion">
+    					<div class="panel panel-default"> <!---.HOME. SECTION-ONE-->
+    					    <!--div class="panel-heading">
+    					      <h4 class="panel-title">
+    					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Collapsible Group Item #1 </a>
+    					      </h4>
+    					    </div-->
+    					    <div id="collapseOne" class="panel-collapse collapse in">
+    					      <div id="panel1_content" class="panel-body">
+    							<h4 class="page-header">
+    		                        Small Boxes
+    		                        <small>Small boxes are used for viewing statistics. To create a small box use the class <code>.small-box</code> and mix &amp; match using the <code>bg-*</code> classes.</small>
+                                </h4>
+
+
+
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+    							<!-- ENGLISH+COMPUTERS
+
+                                    A GOOD PLACE TO START
+    								http://www.typingclub.com/login.html	[http://bit.ly/1lwDE26]
+
+    								http://mooec.com/
+    								    http://s3.amazonaws.com/pieronline-studentexperience/apps/1/header/MOOEC_Logo_lg.png
+    								    https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/p200x200/1463029_1381572368734215_267997612_n.jpg
+    								    https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png
+
+
+                                        ENGLISH FUNDAMENTALS
+    								    http://mooec.com/courses/elementary-english-course [Basic]
+    								        "This course teaches basic English. You will learn how to communicate in English."
+    								    http://mooec.com/courses/improving-your-speaking [Intermediate]
+    								        "This lesson helps you how to speak English fluently. You will improve your pronunciation and fluency."
+    								    http://mooec.com/courses/prepositions-as-language-chunks [Intermediate]
+    								        "This lesson looks at prepositions (e.g., 'in', 'on', 'under', 'behind', 'between'). You will learn how to use prepositions in language chunks."
+    								    http://mooec.com/courses/common-mistakes [Intermediate]
+    								        "This lesson focuses on common mistakes in English for ESL students (e.g., its/it's, loose/lose, me/I, good/well). You will improve your level of English grammar."
+                                        http://mooec.com/courses/subject-verb-agreement [Intermediate]
+                                            "This lesson focuses on important English grammar. You will learn the rules for correct subject-verb agreement."
+                                        http://mooec.com/courses/speaking-english-for-indic-speakers [Intermediate]
+                                            "This lesson teaches pronunciation for indic speakers. You will improve your stress, rhythm, timing, and ability to hear and produce sounds in the English language."
+                                        http://mooec.com/courses/comma-splices-and-run-on-sentences-identification-and-solutions [Intermediate]
+                                            "This lesson teaches higher level grammar for exams and university. You will learn how to make complex grammar and improve your writing."
+
+                                        ENGLISH LIFE SKILLS
+                                        http://mooec.com/courses/asking-someone-for-a-job [Intermediate]
+                                            "This lesson focuses on using English to get a job. You will learn language useful to ask for a job."
+                                        http://mooec.com/courses/referencing [Intermediate]
+                                            "This lesson teaches writing skills at university. You will learn how to reference and rules about never copying."
+                                        http://mooec.com/courses/basic-paraphrasing [Intermediate]
+                                            "This lesson teaches writing skills for university. You will learn the skill of paraphrasing."
+    								    http://mooec.com/courses/presentation-impact-technique [Upper Intermediate]
+    								        "This lesson focuses on making a presentation at university. You will learn skills for university life, vocabulary, pronunciation, and writing."
+
+                                        ENGLISH TO IMPRESS YOUR RELATIVES
+                                        http://mooec.com/courses/coffee-culture [Intermediate]
+                                            "This lesson is most relevant to students who want to work in an English speaking country. You will learn how to better understand fluent spoken English, vocabulary and idiomatic language."
+                                        http://mooec.com/courses/wild-backyards [Intermdeiate]
+                                            "This lesson focuses on developing your skills for reading and listening. You will learn about common plants and animals found in Australian backyards."
+                                        http://mooec.com/courses/coastal-ecosystems [Intermediate]
+                                            "This lesson is for students studying academic English. You will learn ideas, vocabulary, and phrases connected to the environment."
+    								    http://mooec.com/courses/animals-adapting-to-cope-with-climate-change-a1af9620-f2cd-4b2c-b9c2-3e4645ce617b [Upper Intermediate]
+                                            "This lesson focuses on academic reading skills and is useful preparation for the IELTS or TOEFL exams."
+
+                                        ENGLISH FOR PROVING YOU KNOW ENGLISH (IELTS/TOEFL TOPICS)
+                                        http://mooec.com/courses/toefl-lesson-1 [Intermediate]
+                                            "This lesson is for TOEFL students. You will increase your test taking skills."
+                                        http://mooec.com/courses/free-ielts-listening-test [Intermediate]
+                                            "This is a a free Listening test. You will improve your knowledge of the IELTS test."
+                                        http://mooec.com/courses/listening-tips [Intermediate]
+                                            "This lesson teaches listening skills for the IELTS exam. You will improve your listening score and avoid mistakes."
+                                        http://mooec.com/courses/ielts-task-1-prepositions [Intermediate]
+                                            "This lesson is about IELTS writing Task 1. You will learn how to use four important prepositions."
+                                        http://mooec.com/courses/grammar-guru-1 [Intermediate]
+                                            "The Grammar Guru talks about 'Complex Grammar' for the IELTS exam."
+
+
+    								http://www.gcflearnfree.org/learnenglish
+    								    http://www.gcflearnfree.org/learnenglish/simpleenglish
+    								    http://www.gcflearnfree.org/readingactivities
+    								    http://www.gcflearnfree.org/grammar
+
+                                    COMPUTER + INTERNET BASICS
+    								http://www.gcflearnfree.org/computerbasics
+                                        http://www.gcflearnfree.org/googledocuments
+                                        http://www.gcflearnfree.org/googlespreadsheets
+                                        http://www.gcflearnfree.org/searchbetter
+    								    http://www.gcflearnfree.org/useinformationcorrectly
+                                -->
+
+
+
+    					<div class="panel panel-default"><!---.STUDY. SECTION-TWO-->
+					      <div id="collapseTwo" class="panel-collapse collapse">
+
+        					<div class="panel-group" id="accordion1">
+            					<div class="panel panel-default"> <!---English & Computer Basics SECTION-TwoA-->
+
+            					    <div id="collapseTwoA" class="panel-collapse collapse in">
+            					      <div id="panel2A_content" class="panel-body" style="background-color:#FFF7EF">
+            							<h4 class="page-header">
+            		                        English & Computer Basics
+            		                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small style="color:black">Improve your English skills and/or Learn to use computers!</small></p>
+            		                    </h4>
+
+            							<!-- Solid boxes -->
+            							<div class="row">
+            		                        <div class="col-md-12">
+            		                            <!-- [color] tile -->
+            		                            <div class="box box-solid bg-maroon">
+            		                                <div class="box-header">
+            		                                    <!--h3 class="box-title">MOOEC</h3-->
+            		                                    <img src="https://s3.amazonaws.com/pieronline-studentexperience/uploads/admin/pages/User/21437/MOOEC-Lessons_128_original.png" class=" " style="position: relative; left:33% ; top: 5px;" width="34%" alt="logo"/>
+            		                                </div>
+            		                                <div class="box-body">
+                		                                <br>
+            		                                    <code><b>ENGLISH FUNDAMENTALS</b></code>
+                		                                <br>
+                		                                <br>
+                		                                <div class="container-fluid" style="position: relative; left:15px ">
+                    		                                <div class="inner">
+                    		                                    <a href="http://mooec.com/courses/elementary-english-course"  target="_blank" style="color:yellow">
+                    		                                        <b><big>Elementary English Course</big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>[Basic Level]</small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em>"This course teaches basic English. You will learn how to communicate in English."</em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/improving-your-speaking  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Improving Your Speaking  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson helps you how to speak English fluently. You will improve your pronunciation and fluency."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/prepositions-as-language-chunks "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Prepositions As Language Chunks  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate]   </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em>"This lesson looks at prepositions (e.g., 'in', 'on', 'under', 'behind', 'between'). You will learn how to use prepositions in language chunks."</em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/common-mistakes  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Common Mistakes  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson focuses on common mistakes in English for ESL students (e.g., its/it's, loose/lose, me/I, good/well). You will improve your level of English grammar."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/subject-verb-agreement  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Subject-Verb Agreement  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson focuses on important English grammar. You will learn the rules for correct subject-verb agreement." </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/speaking-english-for-indic-speakers  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Speaking English for Indic Speakers  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px;">
+                    		                                        <em> "This lesson teaches pronunciation for indic speakers. You will improve your stress, rhythm, timing, and ability to hear and produce sounds in the English language."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/comma-splices-and-run-on-sentences-identification-and-solutions "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Comma Splices and Run-on Sentences: Identification and Solutions  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson teaches higher level grammar for exams and university. You will learn how to make complex grammar and improve your writing."  </em>
+                    		                                    </p>
+                    		                                </div>
+                                                        </div><!---.container-fluid-->
+                		                                <br>
+                                                        <code><b>ENGLISH LIFE SKILLS</b></code>
+                		                                <br>
+                		                                <br>
+                		                                <div class="container-fluid" style="position: relative; left:15px ">
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/asking-someone-for-a-job   "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Asking Someone for a Job  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson focuses on using English to get a job. You will learn language useful to ask for a job."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/referencing  "  target="_blank" style="color:yellow">
+                    		                                        <b><big>  Referencing! </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson teaches writing skills at university. You will learn how to reference and rules about never copying."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/basic-paraphrasing   "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Basic Paraphrasing  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson teaches writing skills for university. You will learn the skill of paraphrasing."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/presentation-impact-technique  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Presentation Impact Technique  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Upper Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson focuses on making a presentation at university. You will learn skills for university life, vocabulary, pronunciation, and writing."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                            </div><!---.container-fluid-->
+                		                                <br>
+                                                        <code><b>ENGLISH TO IMPRESS YOUR RELATIVES</b></code>
+                		                                <br>
+                		                                <br>
+                		                                <div class="container-fluid" style="position: relative; left:15px ">
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/coffee-culture   "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Coffee Culture  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em>  "This lesson is most relevant to students who want to work in an English speaking country. You will learn how to better understand fluent spoken English, vocabulary and idiomatic language." </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/wild-backyards   "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Wild Backyards  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermdeiate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson focuses on developing your skills for reading and listening. You will learn about common plants and animals found in Australian backyards."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/coastal-ecosystems   "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Coastal Ecosystems  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson is for students studying academic English. You will learn ideas, vocabulary, and phrases connected to the environment."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/animals-adapting-to-cope-with-climate-change-a1af9620-f2cd-4b2c-b9c2-3e4645ce617b   "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Animals Adapting to Cope with Climate Change  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Upper Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson focuses on academic reading skills and is useful preparation for the IELTS or TOEFL exams."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                            </div><!---.container-fluid-->
+                		                                <br>
+                                                        <code><b>ENGLISH FOR PROVING YOU KNOW ENGLISH (IELTS/TOEFL)</b></code>
+                		                                <br>
+                		                                <br>
+                		                                <div class="container-fluid" style="position: relative; left:15px ">
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/toefl-lesson-1  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> TOEFL: Lesson 1  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson is for TOEFL students. You will increase your test taking skills."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/free-ielts-listening-test  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> IELTS Listening Test  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This is a a free Listening test. You will improve your knowledge of the IELTS test."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/listening-tips  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Listening Tips  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  [Intermediate] </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson teaches listening skills for the IELTS exam. You will improve your listening score and avoid mistakes."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/ielts-task-1-prepositions "  target="_blank" style="color:yellow">
+                    		                                        <b><big>  Prepositions Explained (IELTS)  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate]   </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "This lesson is about IELTS writing Task 1. You will learn how to use four important prepositions."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href=" http://mooec.com/courses/grammar-guru-1  "  target="_blank" style="color:yellow">
+                    		                                        <b><big> Grammar Guru 1  </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small> [Intermediate]  </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em> "The Grammar Guru talks about 'Complex Grammar' for the IELTS exam."  </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                            </div><!---.container-fluid-->
+
+
+
+
+                    		                                <!--div class="inner">
+                    		                                    <a href="   "  target="_blank" style="color:yellow">
+                    		                                        <b><big>   </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em>   </em>
+                    		                                    </p>
+                    		                                </div>
+                    		                                <div class="inner">
+                    		                                    <a href="   "  target="_blank" style="color:yellow">
+                    		                                        <b><big>   </big> &nbsp; <i class="fa fa-arrow-circle-right"></i> &nbsp;  <small>  </small></b>
+                    		                                    </a>
+                    		                                    <p style="position: relative; left:15px; padding-right:50px; ">
+                    		                                        <em>   </em>
+                    		                                    </p>
+                    		                                </div-->
+
+
+
+
+
+            		                                </div><!-- /.box-body -->
+            		                            </div><!-- /.box -->
+            		                        </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+
+
+            					      </div>
+            					    </div>
+
+
+            					</div><!---class="panel panel-default"--English & Computer Basics SECTION-TwoA-->
+
+            					<div class="panel panel-default"> <!---University Courses & Tutorials SECTION-TwoB-->
+            					    <div id="collapseTwoB" class="panel-collapse collapse">
+            					      <div id="panel2B_content" class="panel-body" style="background-color:#FFEDFF">
+            							<h4 class="page-header">
+            		                        University Courses & Tutorials
+            		                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><em>Here's where things get interesting! :)</em></small></p>
+            		                    </h4>
+            							<!-- COURSE INDICES
+            								rationale: many services index MOOCs and provide user ratings, currently unclear which offer preferable interface or more useful info.  here we provide E4D users access to a range of such sites, with goal of evaluating user experiences and refining choices constructively.
+            								todo: enable voting/feedback on each site
+            							    https://degreed.com/
+            							    http://www.coursetalk.com/		[http://www.coursetalk.com/login/google-oauth2/]
+            							    http://knollop.com/				[http://knollop.com/auth/start/google-oauth2]
+            								http://www.topfreeclasses.com/	[http://www.topfreeclasses.com/auth/google?return=%2F]
+            								http://www.mooctivity.com/		[http://www.mooctivity.com/accounts/google/login/?process=login]
+            							    https://www.class-central.com/
+            							    http://www.mooc-list.com/
+            							    http://www.worldscienceu.com/
+            								http://openstudy.com/
+            								http://www.learningadvisor.com/
+            								https://gibbon.co/			[https://gibbon.co/login/google-oauth2/]    -->
+
+
+            							<!-- Small boxes (Stat box) -->
+            							<div class="row">
+            		                        <div class="col-md-6">
+            		                            <!-- small box -->
+            		                            <div class="small-box bg-orange">
+            		                                <div class="inner">
+            		                                    <!--h3> knollop </h3--> <img src="http://knollop.com/assets/images/logo/smileylogoblue.png" class=" " alt="logo"/>
+            		                                    <p><b> "...search for the best online courses in any subject, connect with students, and build your education profile....Find online learning materials that are right for you!" </b></p>
+            		                                </div>
+            		                                <!--div class="icon">
+            		                                    <i class="ion ion-bag"></i>
+            		                                </div-->
+            		                                <a href="http://knollop.com/auth/start/google-oauth2" class="small-box-footer" target="_blank"> <big><b>LOGIN to Knollop.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+            		                            </div>
+            		                        </div><!-- ./col -->
+
+            		                        <div class="col-md-6">
+            		                            <!-- small box -->
+            		                            <div class="small-box bg-green">
+            		                                <div class="inner">
+            		                                    <!--h3> coursetalk </h3-->  <img src="https://coursetalk-cdn.s3.amazonaws.com/s/img/logo.png" class=" " alt="logo"/>
+            		                                    <br><br><p><b> "...a comprehensive search of MOOC’s and open enrollment courses...students can enroll in programs, communicate with professors and other students and rate & review courses." </b></p>
+            		                                </div>
+            		                                <!--div class="icon">
+            		                                    <i class="ion ion-stats-bars"></i>
+            		                                </div-->
+            		                                <a href="http://www.coursetalk.com/login/google-oauth2/" class="small-box-footer" target="_blank"> <big><b>LOGIN to Coursetalk.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+            		                            </div>
+            		                        </div><!-- ./col -->
+            		                    </div>
+            							<!-- /.row -->
+            							<!-- Small boxes (Stat box) -->
+            							<div class="row">
+            		                        <div class="col-md-6">
+            		                            <!-- small box -->
+            		                            <div class="small-box bg-purple">
+            		                                <div class="inner">
+            		                                    <!--h3> topfreeclasses </h3-->   <img src="http://www.topfreeclasses.com/assets/images/top-free-classes.png" class=" " width="150" height="95" alt="logo"/>
+            		                                    <p><b> "...a one-stop place for discovering new classes, checking out other students' opinions, and sharing your experiences." </b></p>
+            		                                </div>
+            		                                <!--div class="icon">
+            		                                    <i class="ion ion-stats-bars"></i>
+            		                                </div-->
+            		                                <a href="http://www.topfreeclasses.com/auth/google?return=%2F" class="small-box-footer" target="_blank"> <big><b>LOGIN to topfreeclasses.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+            		                            </div>
+            		                        </div><!-- ./col -->
+            		                        <div class="col-md-6">
+            		                            <!-- small box -->
+            		                            <div class="small-box bg-blue">
+            		                                <div class="inner">
+            		                                    <h3> mooctivity </h3>  <br>   <img src="http://www.mooctivity.com/static/img/mooctivity_logo.png" class=" " style="position: absolute; right: 0px; top: 0px;" width="75" height="75" alt="logo"/>
+            		                                    <b> "...MOOC search engine and social network" &nbsp;&nbsp; <br>"Find the best online courses (MOOCs)..., rate them and share course experiences with friends"  </b>
+            		                                </div>
+            		                                <!--div class="icon">
+            		                                    <i class="ion ion-stats-bars"></i>
+            		                                </div-->
+            		                                <a href="http://www.mooctivity.com/accounts/google/login/?process=login" class="small-box-footer" target="_blank"> <big><b>LOGIN to mooctivity.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+            		                            </div>
+            		                        </div><!-- ./col -->
+            		                    </div>
+            							<!-- /.row -->
+            							<!-- Small boxes (Stat box) -->
+            							<div class="row">
+            		                        <div class="col-md-6">
+            		                            <!-- small box -->
+            		                            <div class="small-box bg-maroon">
+            		                                <div class="inner">
+            		                                    <!--h3> degreed </h3-->   <img src="https://degreed.com/content/img/new/logo.png" class=" " alt="logo"/>  <!--https://az168019.vo.msecnd.net/content/img/new/glasses_logo.png -->
+            		                                    <br><br><p><b> "...helps you track, organize, and showcase your education, and then makes it easy to find what to learn next." </b></p>
+            		                                </div>
+            		                                <!--div class="icon">
+            		                                    <i class="ion ion-bag"></i>
+            		                                </div-->
+            		                                <a href="https://degreed.com/account/login" class="small-box-footer" target="_blank"> <big><b>LOGIN to Degreed.com</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+            		                            </div>
+            		                        </div><!-- ./col -->
+            		                        <div class="col-md-6">
+            		                            <!-- small box -->
+            		                            <div class="small-box bg-red">
+            		                                <div class="inner">
+            		                                    <h3> gibbon </h3> <br> <img src="https://d3i5ls5z2ayn6d.cloudfront.net/img/gibbon-icon-144.png" class=" " style="position: absolute; right: 0px; top: 0px;" width="20%" alt="logo"/>  <!--https://d3i5ls5z2ayn6d.cloudfront.net/img/gibbon-logo.png -->
+            		                                    <b> "...a peer-to-peer learning platform where everyone can learn and teach with the help of playlists. A playlist is an easy way to share articles, links, videos and books to learn anything." </b>
+            		                                </div>
+            		                                <!--div class="icon">
+            		                                    <i class="ion ion-ios7-briefcase-outline"></i>
+            		                                </div-->
+            		                                <a href="https://gibbon.co/login/google-oauth2/" class="small-box-footer" target="_blank"> <big><b>LOGIN to Gibbon.co [sic]</b></big> <i class="fa fa-arrow-circle-right"></i></a>
+            		                            </div>
+            		                        </div><!-- ./col -->
+            		                    </div>
+            							<!-- /.row -->
+
+                                        <br>
+                                        <div style="color:grey; line-height:10%; font-size:7px">
+                                            <p>To do:</p>
+                                            <p>- Add participant average rating to each box (5-star)</p>
+                                            <p>- Add MyRating to each box (5-star)</p>
+                                            <p>- Add participant Comments popup link to each box</p>
+                                            <p>- Add MyComment field to each box</p>
+                                            <p>- Implement rating/comment handling (user-specific & central aggregating)</p>
+                                        </div>
+
+
+
+
+            					      </div>
+            					    </div>
+
+            					</div> <!----class="panel panel-default"---University Courses & Tutorials SECTION-TwoB-->
+                            </div><!---class="panel-group" id="accordion1"-->
+
+                          </div><!---div id="collapseTwo" class="panel-collapse collapse"-->
+    					</div><!--div class="panel panel-default"-->
+
+
+    					<div class="panel panel-default"><!---.CREATE. SECTION-THREE-->
+    					    <div id="collapseThree" class="panel-collapse collapse">
+    					      <div id="panel3_content" class="panel-body">
+
+    							<h4 class="page-header">
+    		                        Tiles
+    		                        <small>To create a tile we create a solid box and a <code>.bg-*</code> class ( * being the name of the color) to the box.</small>
+    		                    </h4>
+    							<!-- Solid boxes -->
+    							<div class="row">
+    		                        <div class="col-md-4">
+    		                            <!-- Navy tile -->
+    		                            <div class="box box-solid bg-navy">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Navy Tile</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.bg-navy</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Primary tile -->
+    		                            <div class="box box-solid bg-light-blue">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Primary Tile</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.bg-light-blue</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Info box -->
+    		                            <div class="box box-solid bg-aqua">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Info Tile</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.bg-aqua</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+    		                    </div>
+    		                    <!-- /.row -->
+
+    		                    <div class="row">
+    		                        <div class="col-md-4">
+    		                            <!-- Danger box -->
+    		                            <div class="box box-solid bg-red">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Danger Tile</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.bg-red</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Success box -->
+    		                            <div class="box box-solid bg-green">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Success Tile</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.bg-green</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Warning box -->
+    		                            <div class="box box-solid bg-yellow">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Warning Tile</h3>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.bg-yellow</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+    		                    </div>
+    		                    <!-- /.row -->
+
+
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---.COMMUNICATE. SECTION-FOUR -->
+    					    <div id="collapseFour" class="panel-collapse collapse">
+    					      <div id="panel4_content" class="panel-body">
+
+    							<!-- Solid boxes -->
+    							<div class="row">
+    		                        <div class="col-md-4">
+    		                            <!-- Default box -->
+    		                            <div class="box box-solid">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Default Solid Box</h3>
+    		                                    <div class="box-tools pull-right">
+    		                                        <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    		                                        <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+    		                                    </div>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Primary box -->
+    		                            <div class="box box-solid box-primary">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Primary Solid Box</h3>
+    		                                    <div class="box-tools pull-right">
+    		                                        <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    		                                        <button class="btn btn-primary btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+    		                                    </div>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.box-primary</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+
+    		                        <div class="col-md-4">
+    		                            <!-- Info box -->
+    		                            <div class="box box-solid box-info">
+    		                                <div class="box-header">
+    		                                    <h3 class="box-title">Info Solid Box</h3>
+    		                                    <div class="box-tools pull-right">
+    		                                        <button class="btn btn-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    		                                        <button class="btn btn-info btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+    		                                    </div>
+    		                                </div>
+    		                                <div class="box-body">
+    		                                    Box class: <code>.box.box-solid.box-info</code>
+    		                                    <p>
+    		                                        amber, microbrewery abbey hydrometer, brewpub ale lauter tun saccharification oxidized barrel.
+    		                                        berliner weisse wort chiller adjunct hydrometer alcohol aau!
+    		                                        sour/acidic sour/acidic chocolate malt ipa ipa hydrometer.
+    		                                    </p>
+    		                                </div><!-- /.box-body -->
+    		                            </div><!-- /.box -->
+    		                        </div><!-- /.col -->
+    		                    </div>
+    		                    <!-- /.row -->
+
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---.ORGANIZE. SECTION-FIVE -->
+    					    <div id="collapseFive" class="panel-collapse collapse">
+    					      <div id="panel5_content" class="panel-body">
+    					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---.EXPLORE. SECTION-SIX-->
+    					    <div id="collapseSix" class="panel-collapse collapse">
+    					      <div id="panel6_content" class="panel-body">
+    					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+
+    					<div class="panel panel-default"><!---GOT-DOUBTS? SECTION-SEVEN-->
+    					    <div id="collapseSeven" class="panel-collapse collapse">
+    					      <div id="panel6_content" class="panel-body">
+    					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+    					      </div>
+    					    </div>
+    					</div><!--div class="panel panel-default"-->
+
+
+					</div> <!--end class="panel-group" id="accordion"-->
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Morris.js charts -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <!-- Sparkline -->
+        <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+        <!-- jvectormap -->
+        <script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+        <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+        <!-- fullCalendar -->
+        <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+        <!-- daterangepicker -->
+        <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+        <!-- iCheck -->
+        <script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+        <!-- AdminLTE App -->
+        <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+
+        <!-- AdminLTE for demo purposes -->
+        <script src="js/AdminLTE/demo.js" type="text/javascript"></script>
+
+
+	    <!-- Place this asynchronous JavaScript just before your </body> tag
+	     see https://developers.google.com/+/web/signin/add-button-javascript for details-->
+	    <!--script type="text/javascript">
+	      (function() {
+	       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	       po.src = 'https://apis.google.com/js/client:plusone.js';
+	       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	     })();
+	    </script-->
+
+
+		<!--meta name="google-signin-clientid" content="CLIENT_ID" /-->
+		<meta name="google-signin-clientid" content="231344210046.apps.googleusercontent.com" />
+		<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email" />
+		<meta name="google-signin-requestvisibleactions" content="http://schemas.google.com/AddActivity" />
+		<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+		<meta name="google-signin-callback" content="signinCallback" />
+		<script type="text/javascript">
+		(function() {
+		  var po = document.createElement('script');
+		  po.type = 'text/javascript'; po.async = true;
+		  po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+		  var s = document.getElementsByTagName('script')[0];
+		  s.parentNode.insertBefore(po, s);
+		})();
+
+		/* Executed when the APIs finish loading */
+		function render() {
+
+		  // Additional params
+		  var additionalParams = {
+		    'theme' : 'dark'
+		  };
+
+		  gapi.signin.render('myButton', additionalParams);
+		}
+
+		function signinCallback(authResult) {
+		  if (authResult['status']['signed_in']) {
+		    // Update the app to reflect a signed in user
+		    // Hide the sign-in button now that the user is authorized, for example:
+		    document.getElementById('gSignInWrapper').setAttribute('style', 'display: none');
+		    document.getElementById('loggedinNavMenus').setAttribute('style', 'display: ');
+
+          	makeApiCall();
+
+		  } else {
+		    // Update the app to reflect a signed out user
+		    // Possible error values:
+		    //   "user_signed_out" - User is signed-out
+		    //   "access_denied" - User denied access to your app
+		    //   "immediate_failed" - Could not automatically log in the user
+		    console.log('Sign-in state: ' + authResult['error']);
+		  }
+		}
+
+
+		// Load the API and make an API call.  Display the results on the screen.
+		function makeApiCall() {
+		// Step 4: Load the Google+ API
+		gapi.client.load('plus', 'v1', function() {
+		  // Step 5: Assemble the API request
+		  var request = gapi.client.plus.people.get({
+		    'userId': 'me'
+		  });
+		  // Step 6: Execute the API request
+		  request.execute(function(resp) {
+		    /*var heading = document.createElement('h4');
+		    var image = document.createElement('img');
+		    image.src = resp.image.url;
+		    heading.appendChild(image);
+		    heading.appendChild(document.createTextNode(resp.displayName));
+		    document.getElementById('content').appendChild(heading); */
+		    document.getElementById('user_name').innerHTML = resp.displayName;
+		    document.getElementById('user_image').src = resp.image.url;
+		    document.getElementById('user_image1').src = resp.image.url;
+		    document.getElementById('user_info').innerHTML = resp.displayName;
+		    document.getElementById('user_profile').href = resp.url;
+		    document.getElementById('user_email').innerHTML = resp.emails[0].value;
+		    document.getElementById('welcome_text').innerHTML = '<b>Welcome, ' + resp.name.givenName + '!</b>';
+			/*console.log('ID: ' + resp.id);
+			console.log('Display Name: ' + resp.displayName);
+			console.log('Image URL: ' + resp.image.url);
+			console.log('Profile URL: ' + resp.url);*/
+
+		  });
+		});
+		}
+
+		</script>
+
+		<script type="text/javascript">
+			/* In left sidebar, change active class to clicked button ---
+			  see http://stackoverflow.com/questions/19618863/changing-active-class-for-list-element */
+			$('#myTabs').on('click','li', function(){
+			   $(this).addClass('active').siblings().removeClass('active');
+			});
+		</script>
+
+    </body>
+
+
+</html>
+{% endautoescape %}
